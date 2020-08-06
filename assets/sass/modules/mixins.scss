@@ -1,0 +1,116 @@
+@mixin font($size: 16px, $height: 1.25, $weight: 400, $spacing: 0, $family: "Helvetica") { 
+    font-family: $family, sans-serif; 
+    font-size: $size; 
+    font-weight: $weight; 
+    letter-spacing: $spacing; 
+    line-height: $height;
+}
+
+@mixin align($justify: inherit, $items: inherit, $content: inherit) { 
+    justify-content: $justify; 
+    align-items: $items; 
+    align-content: $content;
+}
+
+@mixin flex($direction: row) { 
+    display: flex; 
+    flex-direction: $direction;
+}
+
+@mixin link-reset { 
+    color: inherit; 
+    text-decoration: inherit;
+}
+
+@mixin absolute-position($top: inherit, $right: inherit, $bottom: inherit, $left: inherit) { 
+    position: absolute; 
+    top: $top; 
+    right: $right; 
+    bottom: $bottom; 
+    left: $left;
+}
+
+@mixin relative-position($top: inherit, $right: inherit, $bottom: inherit, $left: inherit) { 
+    position: relative; 
+    top: $top; 
+    right: $right; 
+    bottom: $bottom; 
+    left: $left;
+}
+
+@mixin size($width: 100%, $height: 100%) { 
+    height: $height; 
+    width: $width;
+}
+
+@mixin maxsize($width: 100%, $height: 100%) {
+    max-height: $height; 
+    max-width: $width;
+}
+
+@mixin transition($values...) { 
+    $transitions: ();
+
+    @each $declaration in $values { 
+        $prop: nth($declaration, 1); 
+        $prop-opts: ();
+        
+        @each $var in $declaration { 
+            $prop-opts: append($prop-opts, $var); 
+        } 
+        $trans: ($prop, $prop-opts); 
+        $transitions: append($transitions, $trans, comma); 
+    }
+
+    -webkit-transition: trans-prefix($transitions, webkit); 
+    -moz-transition: trans-prefix($transitions, moz); 
+    -o-transition: trans-prefix($transitions, o); 
+    transition: $values;
+}
+
+@mixin animation($name, $duration, $nbiteration, $fill: both) { 
+    -webkit-animation-duration: $duration; 
+    -moz-animation-duration: $duration; 
+    -o-animation-duration: $duration; 
+    animation-duration: $duration; 
+    -webkit-animation-name: $name; 
+    -moz-animation-name: $name; 
+    -o-animation-name: $name; 
+    animation-name: $name; 
+    -webkit-animation-iteration-count: $nbiteration; 
+    -moz-animation-iteration-count: $nbiteration; 
+    -o-animation-iteration-count: $nbiteration; 
+    animation-iteration-count: $nbiteration; 
+    -webkit-animation-fill-mode: $fill; 
+    -moz-animation-fill-mode: $fill; 
+    -o-animation-fill-mode: $fill; 
+    animation-fill-mode: $fill;
+}
+
+@mixin breakpoint($point) { 
+    @if $point == mobile { 
+        @media (max-width: 640px) { 
+            @content; 
+        } 
+    } @else if $point == tablet { 
+        @media (min-width: 641px) and (max-width: 1080px) { 
+            @content; 
+        } 
+    } @else if $point == computer { 
+        @media (min-width: 1081px) { 
+            @content; 
+        } 
+    } @else if $point == tactil { 
+        @media (max-width: 1080px) { 
+            @content; 
+        } 
+    } @else if $point == laptop { 
+        @media (min-width: 1081px) and (max-width: 1438px) { 
+            @content; 
+        } 
+    } @else if $point == desktop { 
+        @media (min-width: 1439px) { 
+            @content; 
+        } 
+    }
+}
