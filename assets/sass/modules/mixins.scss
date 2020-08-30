@@ -87,6 +87,11 @@
     animation-fill-mode: $fill;
 }
 
+@mixin epsilon($color: var(--grey-black), $weight: normal) { 
+    @include font(14px, 1.29, $weight, normal); 
+    color: $color;
+}
+
 @mixin breakpoint($point) { 
     @if $point == mobile { 
         @media (max-width: 640px) { 
