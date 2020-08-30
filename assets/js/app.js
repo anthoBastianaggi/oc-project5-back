@@ -7,9 +7,12 @@ import Layout from './components/Layout/Layout';
 import About from './views/About/About';
 import Admin from './views/Admin/Admin';
 import Home from './views/Home/Home';
-import Project from './views/Project/Project';
+import Projects from './views/Projects/Projects';
+import AddProject from './views/Projects/add/AddProject';
 import Services from './views/Services/Services';
+import AddService from './views/Services/add/AddService';
 import Skills from './views/Skills/Skills';
+import AddSkill from './views/Skills/add/AddSkill';
 
 ReactDOM.render(
     <BrowserRouter>
@@ -20,8 +23,11 @@ ReactDOM.render(
                 <Route path={"/home"} component={() => Layout(Home)} />
                 <Route path={"/about"} component={() => Layout(About)} />
                 <Route path={"/skills"} component={() => Layout(Skills)} />
+                <Route path={"/add-skill"} component={() => Layout(AddSkill)} />
                 <Route path={"/services"} component={() => Layout(Services)} />
-                <Route path={"/project"} component={() => Layout(Project)} />
+                <Route path={"/add-service"} component={() => Layout(AddService)} />
+                <Route path={"/projects"} component={() => Layout(Projects)} />
+                <Route path={"/add-project"} component={() => Layout(AddProject)} />
             </Switch>
         </div>
     </BrowserRouter>,

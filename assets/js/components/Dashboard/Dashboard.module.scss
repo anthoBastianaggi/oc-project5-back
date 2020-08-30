@@ -1,0 +1,105 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 260px;
+    display: block;
+    z-index: 1;
+    color: #fff;
+    font-weight: 200;
+    background-size: cover;
+    background-position: 50%;
+    background-color: #23282d;
+    .user-panel {
+        padding: 15px 12px;
+        border-bottom: 1px solid hsla(0,0%,100%,.2);
+        display: flex;
+        align-items: center;
+        .user-info {
+            height: auto;
+            text-align: left;
+            list-style: none;
+            margin-bottom: 0;
+            padding-left: 20px;
+            .username {
+                font-size: 18px;
+                color: #c8cbd3;
+            }
+            .user-role {
+                font-size: 13px;
+                color: #5c6f84;
+            }
+        }
+    }
+    .menu-item {
+        position: relative;
+        height: 100%;
+        overflow: auto;
+        width: 260px;
+        z-index: 4;
+        padding: 0;
+        padding-bottom: 30px;
+        .menu-item-container {
+            margin-top: 20px;
+            list-style: none;
+            padding: 0;
+            .menu-item-list {
+                position: relative;
+                .item-link, .item-link-button {
+                    text-transform: uppercase;
+                    color: #fff;
+                    font-size: 14px;
+                    font-weight: 600;
+                    text-decoration: none;
+                    display: block;
+                    opacity: .86;
+                    padding: 12px 15px;
+                    &.active {
+                        color: #fff;
+                        opacity: 1;
+                        background: hsla(0,0%,100%,.23);
+                    }
+                    &:hover {
+                        opacity: 1;
+                        background: hsla(0,0%,100%,.23);
+                    }
+                }
+                .item-link-button {
+                    width: 100%;
+                    background: none;
+                    border: none;
+                    height: auto;
+                    &.active, &:hover {
+                        border-radius: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.header {
+    background: #23282d;
+    position: relative;
+    float: right;
+    width: calc(100% - 260px);
+    height: 40px;
+    color: #fff;
+    .navigation {
+        height: 100%;
+        width: 100%;
+        padding: 0 25px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        .admin-container {
+            width: 100%;
+            height: 100%;
+            text-align: right;
+            .admin-info {
+                line-height: 40px;
+            }
+        }
+    }
+}

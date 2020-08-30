@@ -1,0 +1,62 @@
+@import '../../../sass/variables.scss';
+@import '../../../sass/modules/mixins.scss';
+
+.dropdown { 
+    flex: content; 
+    @include epsilon(var(--grey-semi-darkness)); 
+
+    .opener { 
+        cursor: pointer; 
+    } 
+    
+    .boxContainer { 
+        position: relative; 
+        display: flex; 
+        outline: none; 
+        
+        .sous-menu-item {
+            width: 100%;
+            z-index: 1000;
+            position: relative;
+            top: auto;
+            left: auto;
+            right: auto;
+            bottom: auto;
+            border: 0 none;
+            margin: 0;
+            box-shadow: none;
+            background-color: #32373c;
+            text-transform: capitalize;
+            padding: 0;
+            list-style: none;
+            .sous-menu-item-list {
+                float: none;
+                width: 100%;
+                text-align: left;
+                a {
+                    color: #fff;
+                    font-size: 14px;
+                    font-weight: 600;
+                    text-decoration: none;
+                    display: block;
+                    opacity: .86;
+                    padding: 12px 15px;
+                    &:hover {
+                        opacity: 1;
+                        background: hsla(0,0%,100%,.23);
+                    }
+                }
+            }
+        }
+    }
+
+    .disabled {
+        display: none;
+    }
+}
+
+.active {
+    color: #fff;
+    opacity: 1;
+    background: hsla(0,0%,100%,.23);
+}
