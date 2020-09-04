@@ -4,7 +4,7 @@ import cx from 'classnames';
 import './Link.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Link = ({ label, icon, id, className, href, target, external, refresh }) => {
+const Link = ({ label, icon, id, className, href, target, external }) => {
     return (
         <a 
         href={href} 

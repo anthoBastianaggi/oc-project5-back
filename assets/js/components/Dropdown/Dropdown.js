@@ -48,5 +48,4 @@ const Dropdown = ({ data, className, opener }) => {
     );
 }
 
-
 export default Dropdown;
