@@ -18,8 +18,8 @@ const List = ({ data, children }) => {
                                     <span>Modifier</span>
                                 </div>
                                 <div className="delete">
-                                <span>Supprimer</span>
-                            </div>
+                                    <span>Supprimer</span>
+                                </div>
                             </div>
                         </div>
                         {item.category ? (
