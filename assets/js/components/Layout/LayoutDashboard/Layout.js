@@ -1,6 +1,6 @@
 import React from 'react';
 import './Layout.module.scss';
-import Dashboard from '../Dashboard/Dashboard';
+import Dashboard from '../../Dashboard/Dashboard';
 
 
 let Layout = (View) => {

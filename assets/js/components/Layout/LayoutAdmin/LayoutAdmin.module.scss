@@ -1,0 +1,15 @@
+.layout-admin {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
+
+    .content {
+        flex: 1;
+        padding: 20px;
+        height: 100%;
+        @media screen and (max-width: 500px) {
+            padding: 0;
+        }
+    }
+}

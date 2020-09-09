@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './App.module.scss';
 import '../sass/main.scss';
 import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
+import Layout from './components/Layout/LayoutDashboard/Layout';
+import LayoutAdmin from './components/Layout/LayoutAdmin/LayoutAdmin';
 import About from './views/About/About';
 import Admin from './views/Admin/Admin';
 import Home from './views/Home/Home';
@@ -19,7 +20,7 @@ ReactDOM.render(
         <div className="app">
             <Switch>
                 <Redirect exact from="/" to="/home" />
-                <Route path={"/admin"} component={() => Layout(Admin)} />
+                <Route path={"/admin"} component={() => LayoutAdmin(Admin)} />
                 <Route path={"/home"} component={() => Layout(Home)} />
                 <Route path={"/about"} component={() => Layout(About)} />
                 <Route path={"/skills"} component={() => Layout(Skills)} />
