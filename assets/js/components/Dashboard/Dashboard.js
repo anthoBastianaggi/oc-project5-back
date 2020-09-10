@@ -1,18 +1,20 @@
 import React from 'react';
 import './Dashboard.module.scss';
+import MenuList from '../MenuList/MenuList';
 import { useRouteMatch } from 'react-router-dom';
-import  Link from '../Link/Link';
-import Button from '../Button/Button';
-import Dropdown from '../Dropdown/Dropdown';
 import cx from 'classnames';
+import { faHome, faUser, faCode, faFolderOpen, faTools } from '@fortawesome/free-solid-svg-icons'
 
 const Dashboard = () => {
     const menuItems = [
-        { id: "home", href: "/home", label: "home", isActive: () => useRouteMatch("/home") },
-        { id: "about", href: "/about", label: "about", isActive: () => useRouteMatch("/about") },
+        { id: "home", href: "/home", label: "home", icon: faHome, isActive: () => useRouteMatch("/home") },
+        { id: "about", href: "/about", label: "about", icon: faUser, isActive: () => useRouteMatch("/about") },
         { 
           id: "skills", 
           label: "skills", 
+          href: "/skills",
+          icon: faCode,
+          isActive: () => useRouteMatch("/skills"), 
           subMenu: [
             { 
               id:"sub-menu-all-skills",
@@ -31,6 +33,9 @@ const Dashboard = () => {
         { 
           id: "services", 
           label: "services", 
+          href: "/services",
+          icon: faTools,
+          isActive: () => useRouteMatch("/services"),
           subMenu: [
             { 
               id:"sub-menu-all-services",
@@ -49,6 +54,9 @@ const Dashboard = () => {
         { 
           id: "project", 
           label: "project", 
+          href: "/projects",
+          icon: faFolderOpen,
+          isActive: () => useRouteMatch("/projects"),
           subMenu: [
             { 
               id:"sub-menu-all-projects",
@@ -83,22 +91,8 @@ const Dashboard = () => {
               <span className="user-role">Administrateur</span>
             </li>
           </ul>
-        </div>    
-        <div className="menu-item">
-          <div className="menu-item-container">
-            {filterData.map(({ id, href, isActive, label, subMenu, } = {}) =>
-              <div key={id} className="menu-item-list">
-                {subMenu === undefined ? 
-                  <Link href={href} label={label} className={cx("item-link", { ["active"]: isActive() })} /> : 
-                  <Dropdown 
-                    opener={<Button type="tertiary" label={label} className={"item-link-button"} />} 
-                    data={subMenu}> 
-                  </Dropdown>
-                }
-              </div>
-            )}
-          </div>
-        </div>
+        </div>   
+        <MenuList data={filterData} />
       </div>
       <header className="header">
         <nav className="navigation">
