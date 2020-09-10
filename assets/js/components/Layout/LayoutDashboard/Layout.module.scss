@@ -1,3 +1,5 @@
+@import '../../../../sass/modules/mixins.scss';
+
 .layout {
     min-height: 100vh;
     display: flex;
@@ -8,5 +10,13 @@
         margin-left: 260px;
         padding: 20px;
         height: 100%;
+    }
+}
+
+@include breakpoint(tactil) {
+    .layout {
+        .content {
+            margin-left: 55px;
+        }
     }
 }
