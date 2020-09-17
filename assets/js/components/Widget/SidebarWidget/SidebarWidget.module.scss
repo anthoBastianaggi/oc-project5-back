@@ -1,0 +1,60 @@
+@import '../../../../sass/modules/mixins.scss';
+
+.sidebar-widget {
+    display: none;
+}
+
+@include breakpoint(tactil) {
+    .sidebar-widget {
+        display: block;
+        width: 320px;
+        position: fixed;
+        right: -320px;
+        transition: right 1s;
+        top: 40px;
+        background-color: white;
+        height: 100%;
+        min-height: 100vh;
+        margin-left: 20px;
+        &.active {
+            transition: right 1s;
+            right: 0;
+        }
+    
+        .content-widget-sidebar {
+            width: 280px;
+            position: relative;
+            right: 0;
+            top: 160.4px;
+            margin: 0 auto;
+    
+            .label-widget {
+                font-size: 13px;
+                width: 100%;
+                text-align: left;
+            }
+    
+            .input-widget {
+                width: 100%;
+                padding: 2px 10px;
+            }
+        }
+    }
+}
+
+
+@include breakpoint(mobile) {
+    .sidebar-widget {
+        &.active {
+            width: 100%;
+            margin-left: 0;
+            padding-left: 55px;    
+            .content-widget-sidebar {
+                width: 100%;
+                padding: 0 20px;
+                max-width: 500px;
+                margin: 0 auto;   
+            }
+        }
+    }
+}

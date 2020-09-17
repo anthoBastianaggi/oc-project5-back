@@ -21,14 +21,13 @@ Button.defaultProps = {
     type: 'primary',
     onClick: null,
     className: '',
-    btnType: 'button',
-    icon: ''
+    btnType: 'button'
 }
 
 Button.propTypes = {
     as: PropTypes.elementType,
     label: PropTypes.string,
-    icon: PropTypes.string,
+    icon: PropTypes.object || PropTypes.string,
     type: PropTypes.oneOf(type),
     onClick: PropTypes.func,
     className: PropTypes.string,
