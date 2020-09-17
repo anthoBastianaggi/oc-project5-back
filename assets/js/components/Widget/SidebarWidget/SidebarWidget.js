@@ -4,7 +4,7 @@ import './SidebarWidget.module.scss';
 import Widget from '../Widget';
 
 const SidebarWidget = (props) => {
-    const { opened, className } = props;
+    const { opened, className, children } = props;
     
     function useLockBodyScroll() {
         if(opened) {
@@ -21,17 +21,7 @@ const SidebarWidget = (props) => {
     return (
         <div className={className}>
             <div className="content-widget-sidebar" ref={(ref) => props.setSidebarWidgetRef(ref)}>
-                <Widget id="category" label="Categorie du projet">
-                    <div>Hello world</div>
-                </Widget>
-                <Widget id="image" label="Image du projet">
-                    <label className="label-widget">Ajouter le lien de l'image</label>
-                    <input className="input-widget" placeholder="http://mon-image.fr" />
-                </Widget>
-                <Widget id="link" label="Lien du projet">
-                    <label className="label-widget">Ajouter le lien du projet</label>
-                    <input className="input-widget" placeholder="http://mon-projet.fr" />
-                </Widget>
+                {children}
             </div>
         </div>
     );

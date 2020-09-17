@@ -56,10 +56,22 @@ const AddProject = () => {
                     </div>
                 </div>
                 <SidebarWidget 
-                className={cx("sidebar-widget", { ["active"]: open })}
-                setSidebarWidgetRef={setSidebarWidgetRef}
-                opened={open} 
-                />
+                className={cx("sidebar-widget", { ["active"]: open })} 
+                setSidebarWidgetRef={setSidebarWidgetRef} 
+                opened={open}
+                >   
+                    <Widget id="category" label="Categorie du projet">
+                        <div>Hello world</div>
+                    </Widget>
+                    <Widget id="image" label="Image du projet">
+                        <label className="label-widget">Ajouter le lien de l'image</label>
+                        <input className="input-widget" placeholder="http://mon-image.fr" />
+                    </Widget>
+                    <Widget id="link" label="Lien du projet">
+                        <label className="label-widget">Ajouter le lien du projet</label>
+                        <input className="input-widget" placeholder="http://mon-projet.fr" />
+                    </Widget>
+                </SidebarWidget>
                 <div className="content-widget">
                     <Widget id="category" label="Categorie du projet">
                         <div>Hello world</div>
