@@ -10,15 +10,6 @@ const Home = () => {
     const [open, setOpen] = useState(false);
     const container = useRef();
 
-    const BtnSettings = () => (
-        <div className="button-widget">
-            {!open ? 
-                <Button type="tertiary" className="btn-open-widget" icon={faCog} onClick={openSidebarWidget} /> :
-                <Button type="tertiary" className="btn-close-widget" icon={faTimes} onClick={closeSidebarWidget} />
-            }
-        </div>
-    )
-
     function openSidebarWidget() {
         setOpen(true);
     }
@@ -38,7 +29,9 @@ const Home = () => {
                     <div className="button-update-home">
                         <Button type="primary" label="Modifier" className="btn-update-home" />
                     </div>
-                    <BtnSettings />
+                    <div className="button-widget">
+                        <Button type="tertiary" className="btn-open-widget" icon={faCog} onClick={openSidebarWidget} />
+                    </div>
                 </div>  
                 <div className="home-title">
                     <h1 className="title">Home</h1>
@@ -47,11 +40,11 @@ const Home = () => {
             <div className="content-home">
                 <div className={cx("content-edit", { ["active"]: open })}>
                     <div className="title">
-                        <h2>Titre</h2>
+                        <label>Titre</label>
                         <input placeholder="Ajouter un titre" defaultValue="Développeur Web Junior" />
                     </div>
                     <div className="description">
-                        <h2>Description</h2>
+                        <label>Description</label>
                         <textarea 
                         placeholder="Ajouter une description" 
                         defaultValue="Bonjour et bienvenue sur mon site, Venez découvrir mon parcours professionnel, Mes services proposés, Ainsi que mes projets réalisés."  
@@ -62,6 +55,7 @@ const Home = () => {
                 className={cx("sidebar-widget", { ["active"]: open })}
                 setSidebarWidgetRef={setSidebarWidgetRef}
                 opened={open} 
+                onClose={closeSidebarWidget}
                 >
                     <Widget id="image" label="Image du projet">
                         <label className="label-widget">Ajouter le lien de l'image</label>

@@ -10,10 +10,16 @@
         font-size: 30px;
     }
 
-    .label {
-        color: black;
-        &:hover {
-            color: white;
+    .label-container {
+        .label {
+            color: black;
+            &:hover {
+                color: white;
+            }
         }
+    }
+
+    &:hover {
+        text-decoration: none;
     }
 }

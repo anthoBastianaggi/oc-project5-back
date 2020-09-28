@@ -10,15 +10,6 @@ const AddProject = () => {
     const [open, setOpen] = useState(false);
     const container = useRef();
 
-    const BtnSettings = () => (
-        <div className="button-widget">
-            {!open ? 
-                <Button type="tertiary" className="btn-open-widget" icon={faCog} onClick={openSidebarWidget} /> :
-                <Button type="tertiary" className="btn-close-widget" icon={faTimes} onClick={closeSidebarWidget} />
-            }
-        </div>
-    )
-
     function openSidebarWidget() {
         setOpen(true);
     }
@@ -38,7 +29,9 @@ const AddProject = () => {
                     <div className="button-add-project">
                         <Button type="primary" label="Publier" className="btn-add-project" />
                     </div>
-                    <BtnSettings />
+                    <div className="button-widget">
+                        <Button type="tertiary" className="btn-open-widget" icon={faCog} onClick={openSidebarWidget} />
+                    </div>
                 </div>  
                 <div className="project-title">
                     <h1 className="title">Ajouter un nouveau projet</h1>
@@ -47,11 +40,11 @@ const AddProject = () => {
             <div className="content-project">
                 <div className={cx("content-edit", { ["active"]: open })}>
                     <div className="title">
-                        <h2>Titre</h2>
+                        <label>Titre</label>
                         <input placeholder="Ajouter un titre" />
                     </div>
                     <div className="description">
-                        <h2>Description</h2>
+                        <label>Description</label>
                         <textarea placeholder="Ajouter une description"  />
                     </div>
                 </div>
@@ -59,6 +52,7 @@ const AddProject = () => {
                 className={cx("sidebar-widget", { ["active"]: open })} 
                 setSidebarWidgetRef={setSidebarWidgetRef} 
                 opened={open}
+                onClose={closeSidebarWidget}
                 >   
                     <Widget id="category" label="Categorie du projet">
                         <div>Hello world</div>

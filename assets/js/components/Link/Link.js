@@ -24,7 +24,11 @@ const Link = ({ label, icon, id, className, href, target, external }) => {
         }}
         >
             {icon && <FontAwesomeIcon className="icon" icon={icon} />}
-            {icon ? <span className="label">{label}</span> : label}
+            {icon ? 
+                <div className="label-container">
+                    <span className="label">{label}</span>
+                </div>
+            : label}
         </a>
     )
 }

@@ -20,13 +20,13 @@ const Dashboard = () => {
               id:"sub-menu-all-skills",
               label: "Toutes les compétences", 
               href: "/skills",
-              isActive: () => useRouteMatch("/skills") 
+              isActiveSubMenu: () => useRouteMatch("/skills") 
             },
             {
               id:"sub-menu-add-skill",
               label: "Ajouter compétence", 
               href: "/add-skill",
-              isActive: () => useRouteMatch("/add-skill") 
+              isActiveSubMenu: () => useRouteMatch("/add-skill") 
             }
           ],
         },
@@ -41,13 +41,13 @@ const Dashboard = () => {
               id:"sub-menu-all-services",
               label: "Tous les services", 
               href: "/services",
-              isActive: () => useRouteMatch("/services") 
+              isActiveSubMenu: () => useRouteMatch("/services") 
             },
             {
               id:"sub-menu-add-service",
               label: "Ajouter service", 
               href: "/add-service",
-              isActive: () => useRouteMatch("/add-service") 
+              isActiveSubMenu: () => useRouteMatch("/add-service") 
             }
           ], 
         },
@@ -62,13 +62,13 @@ const Dashboard = () => {
               id:"sub-menu-all-projects",
               label: "Toutes les projets",
               href: "/projects",
-              isActive: () => useRouteMatch("/projects") 
+              isActiveSubMenu: () => useRouteMatch("/projects") 
             },
             {
               id:"sub-menu-add-project",
               label: "Ajouter projet", 
               href: "/add-project",
-              isActive: () => useRouteMatch("/add-project") 
+              isActiveSubMenu: () => useRouteMatch("/add-project") 
             }
           ], 
         }

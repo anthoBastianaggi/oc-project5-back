@@ -5,28 +5,63 @@
 }
 
 @include breakpoint(tactil) {
+    .sidebar-widget::before {
+        display: none;
+    }
+
     .sidebar-widget {
         display: block;
         width: 320px;
-        position: fixed;
-        right: -320px;
-        transition: right 1s;
-        top: 40px;
+        position: absolute;
+        visibility: hidden;
+        top: -106px;
+        right: -20px;
+        transition: all 1s;
         background-color: white;
-        height: 100%;
-        min-height: 100vh;
-        margin-left: 20px;
+        bottom: -20px;
+        transform: translate3d(100%, 0, 0);
         &.active {
-            transition: right 1s;
-            right: 0;
+            visibility: visible;
+            transition: all 1s;
+            right: -20px;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .button-widget {
+            padding: 20px;
+            display: flex;
+            justify-content: flex-end;
+            .btn-close-widget {
+                color: #555d66;
+                border: none;
+                margin: 0;
+                cursor: pointer;
+                line-height: 2;
+                padding: 0 12px;
+                height: 36px;
+                background: transparent;
+            }
         }
     
         .content-widget-sidebar {
             width: 280px;
             position: relative;
             right: 0;
-            top: 160.4px;
+            top: 70.4px;
             margin: 0 auto;
+
+            .btn-close-widget {
+                color: #555d66;
+                border: none;
+                margin: 0;
+                cursor: pointer;
+                line-height: 2;
+                padding: 0 12px;
+                height: 36px;
+                background: transparent;
+                top: -89px;
+                right: -243px;
+            }
     
             .label-widget {
                 font-size: 13px;
@@ -40,20 +75,37 @@
             }
         }
     }
+
+    .sidebar-widget-about {
+        .content-widget-sidebar {
+            top: 141.4px;         
+        }
+    }
 }
 
 
 @include breakpoint(mobile) {
     .sidebar-widget {
+        position: fixed;
+        top: 40px;
+        right: 0px;
         &.active {
             width: 100%;
-            margin-left: 0;
-            padding-left: 55px;    
+            right: 0;
+            padding-left: 55px; 
+            
+            .button-widget {
+                padding: 12px 20px;
+                height: 60px;
+                margin-bottom: 3rem;
+            }
+
             .content-widget-sidebar {
                 width: 100%;
                 padding: 0 20px;
                 max-width: 500px;
                 margin: 0 auto;   
+                top: 0;
             }
         }
     }
