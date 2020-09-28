@@ -18,11 +18,11 @@ const AddService = () => {
             <div className="content-service">
                 <div className="content-edit">
                     <div className="title">
-                        <h2>Titre</h2>
+                        <label>Titre</label>
                         <input placeholder="Ajouter un titre" />
                     </div>
                     <div className="description">
-                        <h2>Description</h2>
+                        <label>Description</label>
                         <textarea placeholder="Ajouter une description"  />
                     </div>
                 </div>

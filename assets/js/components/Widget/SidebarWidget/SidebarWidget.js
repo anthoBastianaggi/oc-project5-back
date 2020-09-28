@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './SidebarWidget.module.scss';
-import Widget from '../Widget';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import Button from '../../Button/Button';
 
-const SidebarWidget = (props) => {
-    const { opened, className, children } = props;
+
+const SidebarWidget = ({ opened, className, children, onClose = undefined, setSidebarWidgetRef }) => {
+    const [mobile, setMobile] = useState(0);
+    
+    function resize() {
+        setMobile(window.innerWidth);
+    }
+
+    useEffect(() => {
+        resize();
+        window.addEventListener("resize", resize);
+    
+        return () => {
+          window.removeEventListener("resize", resize);
+        };
+    }, []);
     
     function useLockBodyScroll() {
-        if(opened) {
+        if(opened && mobile <= 640) {
             document.body.style.overflow = "hidden";
         } else {
             if(typeof window !== "undefined") {
@@ -17,10 +32,12 @@ const SidebarWidget = (props) => {
     }
 
     useLockBodyScroll();
-
     return (
         <div className={className}>
-            <div className="content-widget-sidebar" ref={(ref) => props.setSidebarWidgetRef(ref)}>
+            <div className="button-widget">
+                <Button type="tertiary" className="btn-close-widget" icon={faTimes} onClick={onClose} />
+            </div>
+            <div className="content-widget-sidebar" ref={(ref) => setSidebarWidgetRef(ref)}>
                 {children}
             </div>
         </div>
@@ -31,7 +48,8 @@ const SidebarWidget = (props) => {
 SidebarWidget.propTypes = {
     className: PropTypes.string,
     opened: PropTypes.bool,
-    setSidebarWidgetRef: PropTypes.func
+    setSidebarWidgetRef: PropTypes.func,
+    onClose: PropTypes.func
 };
 
 export default SidebarWidget;

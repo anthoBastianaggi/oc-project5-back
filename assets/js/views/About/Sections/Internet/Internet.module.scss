@@ -1,0 +1,19 @@
+.section-internet {
+    .internet-title {
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+
+    .address-e-mail { 
+        text-align: left;
+        margin-bottom: 2rem;
+        label {
+            margin-bottom: 1rem;
+        }
+        input {
+            width: 100%;
+            height: 45px;
+            padding: 10px;
+        }
+    }
+}

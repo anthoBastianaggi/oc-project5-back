@@ -57,7 +57,7 @@
     
                 .button-widget {
                     display: none;
-                    .btn-open-widget, .btn-close-widget {
+                    .btn-open-widget {
                         color: #555d66;
                         border: none;
                         margin: 0;
@@ -67,10 +67,6 @@
                         height: 36px;
                         background: transparent;
                     }
-
-                    .btn-close-widget {
-                        z-index: 1;
-                    }
                 }
             }
         }
@@ -78,13 +74,14 @@
         .content-home {
             position: relative;
             display: flex;
+            height: 100%;
             .content-edit {
                 width: 100%;
                 position: relative;
                 .title {
                     text-align: left;
                     margin-bottom: 2rem;
-                    h2 {
+                    label {
                         margin-bottom: 1rem;
                     }
                     input {
@@ -96,7 +93,7 @@
 
                 .description {
                     text-align: left;
-                    h2 {
+                    label {
                         margin-bottom: 1rem;
                     }
 
@@ -111,9 +108,10 @@
             .content-widget {
                 position: relative;
                 right: 0;
-                top: 54.4px;
+                top: 39.4px;
                 max-width: 300px;
                 margin-left: 20px;
+                height: 100%;
 
                 .label-widget {
                     font-size: 13px;
