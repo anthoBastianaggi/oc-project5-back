@@ -4,16 +4,7 @@ import  Link from '../Link/Link';
 import cx from 'classnames';
 
 const MenuList = ({ data }) => {
-
-    function tata() {
-        data.map((item) => (
-            item.subMenu !== undefined ? item.subMenu.map((i) => 
-                i.isActiveSubMenu() ? true : false 
-            ) : ""
-        ))
-    }
-
-    function toto() {
+    function activeClassSubMenu() {
         const parent = document.getElementsByClassName('sub-menu');
         parent.forEach(function(element, index) {
             const child = element.children;
@@ -45,7 +36,7 @@ const MenuList = ({ data }) => {
     }
 
     useEffect(() => {
-       toto();
+        activeClassSubMenu();
        isHover();
       }, []);
 
