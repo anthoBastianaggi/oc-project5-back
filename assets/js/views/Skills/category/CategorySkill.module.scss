@@ -1,0 +1,204 @@
+@import '../../../../sass/modules/mixins.scss';
+
+.category-skill {
+    overflow: initial !important;
+    .category-skill-header {
+        display: flex;
+        position: relative;
+        margin-bottom: 3rem;
+        .category-skill-title {
+            text-align: left;
+            width: 100%;
+            display: flex;
+            justify-content: left;
+            flex: 0 0 66.333%;
+            max-width: 66.333%;
+            right: 33.33333%;
+            position: relative;
+            .title {
+                margin: 0;
+                line-height: 1;
+                height: 38.4px;
+                font-size: 2rem;
+            }
+        }
+        .category-skill-settings {
+            display: flex;
+            justify-content: end;
+            width: 100%;
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+            left: 66.66666%;
+            position: relative;
+            .button-add-category-skill {
+                display: flex;
+                justify-content: end;
+                align-items: center;
+                .btn-add-category-skill {
+                    background-color: #0070FF;
+                    color: #fff;
+                    border-color: #CDE1F5;
+                    margin: 0;
+                    cursor: pointer;
+                    border-width: 1px;
+                    border-style: solid;
+                    -webkit-appearance: none;
+                    border-radius: 3px;
+                    white-space: nowrap;
+                    box-sizing: border-box;
+                    line-height: 2;
+                    padding: 0 12px 2px;
+                    font-size: 14px;
+                    height: 38.4px;
+                    width: 75px;
+                }
+            }
+        }
+    }
+    
+    .content-category-skill {
+        position: relative;
+        display: flex;
+        .content-edit {
+            width: 65%;
+            position: relative;
+            h2 {
+                margin-bottom: 1.5rem;
+                font-size: 1.1rem;
+                text-align: left;
+                font-weight: 600;
+            }
+            .name-category-skill, .slug-category-skill {
+                text-align: left;
+                margin-bottom: 2rem;
+                label {
+                    margin-bottom: 1rem;
+                }
+                input {
+                    width: 100%;
+                    height: 45px;
+                    padding: 10px;
+                }
+            }
+        }
+
+        .content-table {
+            position: relative;
+            right: 0;
+            margin-left: 20px;
+            height: 100%;
+            width: 100%;
+            h2 {
+                margin-bottom: 0.9rem;
+                font-size: 1.1rem;
+                text-align: left;
+                font-weight: 600;
+            }
+
+            .action-select {
+                display: flex;
+                align-items: center;
+                height: 50px;
+                .btn-apply {
+                    margin: 0;
+                    cursor: pointer;
+                    border-width: 1px;
+                    border-style: solid;
+                    -webkit-appearance: none;
+                    border-radius: 3px;
+                    white-space: nowrap;
+                    box-sizing: border-box;
+                    line-height: 2;
+                    padding: 0 12px;
+                    font-size: 14px;
+                    height: 34px;
+                    width: 80px;
+                    margin-left: 10px;
+                    color: #0071a1;
+                    border-color: #0071a1;
+                    background: #f3f5f6;
+                }
+            }
+        }
+    }
+}
+
+@include breakpoint(tactil) {
+    .wrap {
+        .category-skill-header {
+            .category-skill-title {
+                .title {
+                    font-size: 1.9rem;
+                }
+            }
+        }
+
+        .content-category-skill {
+            .content-edit {
+                width: 100%;
+                margin-right: 0px;
+                transition: margin-right 1s;
+                &.active {
+                    transition: margin-right 1s;
+                    margin-right: 320px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 900px) {
+    .wrap {
+        .content-category-skill {
+            display: block;
+            .content-table {
+                margin-left: 0;
+                top: 0;
+                margin-top: 3rem;
+            }
+        }
+    }
+}
+
+@include breakpoint(mobile) {
+    .category-skill {
+        padding: 20px 15px !important;
+        overflow: hidden !important;
+        .category-skill-header {
+            display: block;
+            position: relative;
+            margin: -20px -20px 3rem -20px;
+            .category-skill-title {
+                text-align: left;
+                width: 100%;
+                display: flex;
+                justify-content: left;
+                max-width: 100%;
+                right: 0;
+                padding: 10px 20px;
+                position: relative;
+            }
+            .category-skill-settings {
+                display: flex;
+                justify-content: end;
+                width: 100%;
+                position: relative;
+                padding: 10px 20px;
+                background-color: white;
+                border-bottom: 1px solid #e2e4e7;
+                max-width: 100%;
+                left: 0;
+            }
+        }
+
+        .content-category-skill {
+            .content-table {
+                .action-select {
+                    .btn-apply {
+                        margin-left: 5px;
+                    }
+                }
+            }
+        }
+    }
+}

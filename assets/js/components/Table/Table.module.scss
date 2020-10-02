@@ -1,0 +1,96 @@
+.table-container {
+    overflow: auto;
+    .table {
+        width: 100%;
+        display: table;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: 0.25rem;
+        .table-head {
+            display: table-header-group;
+            background-color: rgba(0, 0, 0, 0.03);
+            .table-row {
+                color: inherit;
+                height: 45px;
+                display: table-row;
+                outline: none;
+                vertical-align: middle;
+                .header-cells {
+                    max-width: 225px;
+                    min-width: 225px;
+                    padding: 0 1.25rem;
+                    overflow-x: auto;
+                    white-space: nowrap;
+                    text-align: left;
+                    color: rgba(0, 0, 0, 0.87);
+                    font-size: 18px;
+                    font-weight: 400;
+                    display: table-cell;
+                    border-bottom: 1px solid rgba(224, 224, 224, 1);
+                    vertical-align: inherit;
+                }
+
+                .checkbox {
+                    width: 45px;
+                    min-width: 45px !important;
+                }
+            }
+        }
+
+        .table-body {
+            display: table-row-group;
+            .table-row {
+                color: inherit;
+                height: 40px;
+                display: table-row;
+                outline: none;
+                vertical-align: middle;
+                &:nth-child(2n+1) {
+                    background-color: #f9f9f9;
+                }
+
+                &:hover {
+                    .data-cells {
+                        .actions {
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                .data-cells {
+                    height: 40px;
+                    padding: 5px 1.25rem;
+                    text-align: left;
+                    display: table-cell;
+                    border: none;
+                    vertical-align: top;
+                    color: rgba(0, 0, 0, 0.87);
+                    font-size: 15px;
+                    font-weight: 400;
+                    .item {
+                        color: #353c52;
+                    }
+                    .actions {
+                        font-size: 13px;
+                        padding: 2px 0 0;
+                        display: flex;
+                        position: relative;
+                        opacity: 0;
+                        .update {
+                            color: green;
+                            padding-right: 5px;
+                        }
+                        .delete {
+                            color: red;
+                        }
+                    }
+                }  
+                
+                .checkbox {
+                    width: 45px;
+                    min-width: 45px !important;
+                }
+            }
+        }
+    }
+}
