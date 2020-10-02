@@ -27,6 +27,12 @@ const Dashboard = () => {
               label: "Ajouter compétence", 
               href: "/add-skill",
               isActiveSubMenu: () => useRouteMatch("/add-skill") 
+            },
+            {
+              id:"sub-menu-category-skill",
+              label: "Categorie", 
+              href: "/category-skill",
+              isActiveSubMenu: () => useRouteMatch("/category-skill") 
             }
           ],
         },
@@ -69,6 +75,12 @@ const Dashboard = () => {
               label: "Ajouter projet", 
               href: "/add-project",
               isActiveSubMenu: () => useRouteMatch("/add-project") 
+            },
+            {
+              id:"sub-menu-category-project",
+              label: "Categorie", 
+              href: "/category-project",
+              isActiveSubMenu: () => useRouteMatch("/category-project") 
             }
           ], 
         }
