@@ -30,10 +30,10 @@ const About = () => {
             <div className="about-header">
                 <div className="about-settings">
                     <div className="button-update-about">
-                        <Button type="primary" label="Modifier" className="btn-update-about" />
+                        <Button variant="primary" type="button" label="Modifier" className="btn-update-about" />
                     </div>
                     <div className="button-widget">
-                        <Button type="tertiary" className="btn-open-widget" icon={faCog} onClick={openSidebarWidget} />
+                        <Button variant="tertiary" type="button" className="btn-open-widget" icon={faCog} onClick={openSidebarWidget} />
                     </div>
                 </div>  
                 <div className="about-title">

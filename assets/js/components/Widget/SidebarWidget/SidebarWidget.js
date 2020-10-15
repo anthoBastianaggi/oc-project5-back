@@ -35,7 +35,7 @@ const SidebarWidget = ({ opened, className, children, onClose = undefined, setSi
     return (
         <div className={className}>
             <div className="button-widget">
-                <Button type="tertiary" className="btn-close-widget" icon={faTimes} onClick={onClose} />
+                <Button variant="tertiary" type="button" className="btn-close-widget" icon={faTimes} onClick={onClose} />
             </div>
             <div className="content-widget-sidebar" ref={(ref) => setSidebarWidgetRef(ref)}>
                 {children}

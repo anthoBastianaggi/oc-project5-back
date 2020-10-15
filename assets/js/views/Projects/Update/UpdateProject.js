@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import './AddProject.module.scss';
+import './UpdateProject.module.scss';
 import Button from '../../../components/Button/Button';
 import Widget from '../../../components/Widget/Widget';
 import SidebarWidget from '../../../components/Widget/SidebarWidget/SidebarWidget';
@@ -7,7 +7,7 @@ import Checkbox from '../../../components/Checkbox/Checkbox';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import cx from 'classnames';
     
-const AddProject = () => {
+const UpdateProject = () => {
     const [open, setOpen] = useState(false);
     const container = useRef();
 
@@ -33,20 +33,20 @@ const AddProject = () => {
 
     return (
         <div className="wrap">
-            <div className="project-header">
-                <div className="project-settings">
-                    <div className="button-add-project">
-                        <Button variant="primary" type="button" label="Publier" className="btn-add-project" />
+            <div className="update-project-header">
+                <div className="update-project-settings">
+                    <div className="button-update-project">
+                        <Button variant="primary" type="button" label="Modifier" className="btn-update-project" />
                     </div>
                     <div className="button-widget">
                         <Button variant="tertiary" type="button" className="btn-open-widget" icon={faCog} onClick={openSidebarWidget} />
                     </div>
                 </div>  
-                <div className="project-title">
-                    <h1 className="title">Ajouter un nouveau projet</h1>
+                <div className="update-project-title">
+                    <h1 className="title">Modifier le projet</h1>
                 </div>  
             </div>
-            <div className="content-project">
+            <div className="content-update-project">
                 <div className={cx("content-edit", { ["active"]: open })}>
                     <div className="title">
                         <label>Titre</label>
@@ -97,4 +97,4 @@ const AddProject = () => {
     )
 }
     
-export default AddProject;
+export default UpdateProject;

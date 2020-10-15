@@ -1,6 +1,133 @@
+@import '../../../sass/modules/mixins.scss';
+
 .wrap {
     .skills-title {
         text-align: left;
         margin-bottom: 2.5rem;
+    }
+    .action-select {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        .btn-apply {
+            margin: 0;
+            cursor: pointer;
+            border-width: 1px;
+            border-style: solid;
+            -webkit-appearance: none;
+            border-radius: 3px;
+            white-space: nowrap;
+            box-sizing: border-box;
+            line-height: 2;
+            padding: 0 12px;
+            font-size: 14px;
+            height: 34px;
+            width: 80px;
+            margin-left: 10px;
+            color: #0071a1;
+            border-color: #0071a1;
+            background: #f3f5f6;
+        }
+    }
+    .table {
+        .table-head {
+            .table-row {
+                .checkbox {
+                    width: 45px;
+                    min-width: 45px !important;
+                }
+            }       
+        }
+       
+        .table-body {
+            .table-row {
+                &:nth-child(2n+1) {
+                    background-color: #f9f9f9;
+                }
+
+                &:hover {
+                    .table-data-cell {
+                        .actions {
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                .table-data-cell {
+                    .item {
+                        color: #353c52;
+                    }
+                    .actions {
+                        font-size: 13px;
+                        padding: 2px 0 0;
+                        display: flex;
+                        position: relative;
+                        opacity: 0;
+                        .update {
+                            a {
+                                 color: green;
+                                 font-size: 13px;
+                            }
+                           
+                            padding-right: 5px;
+                        }
+                        .delete {
+                            color: red;
+                            .btn-open-modal {
+                                font-size: 13px;
+                                padding: 0;
+                                height: 20px;
+                                color: red;
+                                background-color: transparent;
+                                border: none;
+                            }
+                        }
+                    }
+                }
+
+                .checkbox {
+                    width: 45px;
+                    min-width: 45px !important;
+                }
+            }
+        } 
+    }
+
+    .modal-skills {
+        .modal-container {
+            padding: 0 75px 25px;
+            @include breakpoint(tactil) {
+                max-width: 450px;
+                margin: auto;
+            }
+
+            .modal-icon {
+                text-align: center;
+                margin: 15px 0;
+                justify-content: center;
+                svg {
+                    @include size(55px, 55px);
+                    color: #e53b5b;
+                }
+            }
+
+            .modal-description {
+                @include font(14px, 1.29, normal, normal);
+                margin-bottom: 15px;
+                color: #5c6f84;
+            }
+
+            .modal-button {
+                min-width: 186px;
+                width: 100%;
+                height: 40px;
+                max-width: 250px;
+                margin: 0 auto 10px;
+                &.delete {
+                    background-color: #e53b5b;
+                    border-color: #e53b5b;
+                }
+            }
+        }
     }
 }

@@ -119,6 +119,107 @@
                     background: #f3f5f6;
                 }
             }
+            .table {
+                .table-head {
+                    .table-row {
+                        .checkbox {
+                            width: 45px;
+                            min-width: 45px !important;
+                        }
+                    }       
+                }
+               
+                .table-body {
+                    .table-row {
+                        &:nth-child(2n+1) {
+                            background-color: #f9f9f9;
+                        }
+        
+                        &:hover {
+                            .table-data-cell {
+                                .actions {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+        
+                        .table-data-cell {
+                            .item {
+                                color: #353c52;
+                            }
+                            .actions {
+                                font-size: 13px;
+                                padding: 2px 0 0;
+                                display: flex;
+                                position: relative;
+                                opacity: 0;
+                                .update {
+                                    a {
+                                         color: green;
+                                         font-size: 13px;
+                                    }
+                                   
+                                    padding-right: 5px;
+                                }
+                                .delete {
+                                    color: red;
+                                    .btn-open-modal {
+                                        font-size: 13px;
+                                        padding: 0;
+                                        height: 20px;
+                                        color: red;
+                                        background-color: transparent;
+                                        border: none;
+                                    }
+                                }
+                            }
+                        }
+        
+                        .checkbox {
+                            width: 45px;
+                            min-width: 45px !important;
+                        }
+                    }
+                } 
+            }
+
+            .modal-category-project {
+                .modal-container {
+                    padding: 0 75px 25px;
+                    @include breakpoint(tactil) {
+                        max-width: 450px;
+                        margin: auto;
+                    }
+        
+                    .modal-icon {
+                        text-align: center;
+                        margin: 15px 0;
+                        justify-content: center;
+                        svg {
+                            @include size(55px, 55px);
+                            color: #e53b5b;
+                        }
+                    }
+        
+                    .modal-description {
+                        @include font(14px, 1.29, normal, normal);
+                        margin-bottom: 15px;
+                        color: #5c6f84;
+                    }
+        
+                    .modal-button {
+                        min-width: 186px;
+                        width: 100%;
+                        height: 40px;
+                        max-width: 270px;
+                        margin: 0 auto 10px;
+                        &.delete {
+                            background-color: #e53b5b;
+                            border-color: #e53b5b;
+                        }
+                    }
+                }
+            }
         }
     }
 }

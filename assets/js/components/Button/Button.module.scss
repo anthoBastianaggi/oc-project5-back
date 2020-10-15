@@ -44,3 +44,12 @@
         background-color: #dcdcde;
     }
 }
+
+.btn-error {
+    color: white;
+    border: 1px solid #c8cbd3;
+    background-color: #e53b5b;
+    &:hover {
+        background-color: #e53b5b;
+    }
+}

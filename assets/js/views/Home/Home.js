@@ -27,10 +27,10 @@ const Home = () => {
             <div className="home-header">
                 <div className="home-settings">
                     <div className="button-update-home">
-                        <Button type="primary" label="Modifier" className="btn-update-home" />
+                        <Button variant="primary" type="button" label="Modifier" className="btn-update-home" />
                     </div>
                     <div className="button-widget">
-                        <Button type="tertiary" className="btn-open-widget" icon={faCog} onClick={openSidebarWidget} />
+                        <Button variant="tertiary" type="button" className="btn-open-widget" icon={faCog} onClick={openSidebarWidget} />
                     </div>
                 </div>  
                 <div className="home-title">
