@@ -1,0 +1,14 @@
+.checkbox-content {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: .25rem;
+    position: relative;
+    width: 100%;
+
+    .checkbox-label {
+        display: block;
+        font-size: 1rem;
+        padding: 0 0 0 .5rem;
+    }
+}

@@ -4,11 +4,12 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const type = ['primary', 'secondary', 'tertiary'];
+const variantButtons = ['primary', 'secondary', 'tertiary', 'error'];
+const type = ['button', 'reset', 'submit'];
 
-const Button = ({as: Element = "button", label, icon, type, onClick, className, btnType }) => {
+const Button = ({as: Element = "button", label, icon, type, onClick, className, variant }) => {
     return (
-        <Element className={cx("button", `btn-${type}`, className)} onClick={onClick} type={btnType}>
+        <Element className={cx("button", `btn-${variant}`, className)} onClick={onClick} type={type} variant={variant}>
             {icon && <FontAwesomeIcon icon={icon} />}
             <span className={"label"}>{label}</span>
         </Element>
@@ -18,10 +19,10 @@ const Button = ({as: Element = "button", label, icon, type, onClick, className, 
 Button.defaultProps = {
     as: 'button',
     label: null,
-    type: 'primary',
+    variant: 'primary',
     onClick: null,
     className: '',
-    btnType: 'button'
+    type: 'button'
 }
 
 Button.propTypes = {
@@ -31,7 +32,7 @@ Button.propTypes = {
     type: PropTypes.oneOf(type),
     onClick: PropTypes.func,
     className: PropTypes.string,
-    btnType: PropTypes.string
+    variant: PropTypes.oneOf(variantButtons)
 }
 
 export default Button;

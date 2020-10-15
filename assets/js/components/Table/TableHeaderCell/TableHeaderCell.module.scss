@@ -1,0 +1,14 @@
+.table-header-cell {
+    max-width: 225px;
+    min-width: 225px;
+    padding: 0 1.25rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 18px;
+    font-weight: 400;
+    display: table-cell;
+    border-bottom: 1px solid rgba(224, 224, 224, 1);
+    vertical-align: inherit;
+}

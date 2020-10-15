@@ -1,21 +1,21 @@
 import React from 'react';
-import './AddService.module.scss';
+import './UpdateService.module.scss';
 import Button from '../../../components/Button/Button';
     
-const AddService = () => {
+const UpdateService= () => {
     return (
         <div className="wrap">
-            <div className="service-header">
-                <div className="service-button">
-                    <div className="button-add-service">
-                        <Button variant="primary" type="button" label="Publier" className="btn-add-service" />
+            <div className="update-service-header">
+                <div className="update-service-button">
+                    <div className="button-update-service">
+                        <Button variant="primary" type="button" label="Modifier" className="btn-update-service" />
                     </div>
                 </div>     
-                <div className="service-title">
-                    <h1 className="title">Ajouter un nouveau service</h1>
+                <div className="update-service-title">
+                    <h1 className="title">Modifier le service</h1>
                 </div>  
             </div>
-            <div className="content-service">
+            <div className="content-update-service">
                 <div className="content-edit">
                     <div className="title">
                         <label>Titre</label>
@@ -31,4 +31,4 @@ const AddService = () => {
     )
 }
     
-export default AddService;
+export default UpdateService;

@@ -100,6 +100,7 @@ const SelectDate = ({
     [className, validationError]
   );
 
+  console.log(fields)
   return (
     <div className={cls}>
       <div className="date-picker-container">
