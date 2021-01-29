@@ -1,13 +1,14 @@
 import React from 'react';
+import Flex from '../../Flex/Flex';
 import './LayoutAdmin.module.scss';
 
 let LayoutAdmin = (View) => {
   return (
-    <div className="layout-admin">
+    <Flex className="layout-admin" column>
       <div className="content">
         <View />
       </div>
-    </div>
+    </Flex>
   );
 }
 

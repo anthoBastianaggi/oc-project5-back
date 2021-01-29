@@ -1,54 +1,91 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Identity.module.scss';
 import SelectDate from '../../../../components/Select/SelectDate/SelectDate';
+import PropTypes from 'prop-types';
+import Flex from '../../../../components/Flex/Flex';
+import Title from '../../../../components/Title/Title';
+
+const Identity = ({ user, onIdentityUpdate, onIdentityBirthdateUpdate, values }) => {
+    const defaultValue = getDefaultValues(user);
     
-const Identity = () => {
-    const [date, setDate] = useState(new Date(2000, 0, 1));
-    const handleChange = value => setDate(value);
+    function getDefaultValues(user) {
+        return {
+            firstname: user.firstname,
+            lastname: user.lastname,
+            birthdate: new Date(user.birthdate.slice(0, 10)),
+            profile: user.profile,
+            status: user.status,
+            description: user.description
+        }
+    }
 
     return (
         <div className="section-identity">
-            <h2 className="identity">Identity</h2>
+            <Title as="h2" stylesTitle="stylesH2" className="identity">Identité</Title>
             <div className="name">
-                <div className="name-container">
+                <Flex className="name-container">
                     <div className="firstname">
-                        <label>Firstname</label>
-                        <input placeholder="Ajouter votre nom" defaultValue="Anthony" />
+                        <label>Prénom</label>
+                        <input 
+                        name="firstname"
+                        placeholder="Ajouter votre prénom" 
+                        defaultValue={values.firstname || defaultValue.firstname} 
+                        onChange={onIdentityUpdate} 
+                        />
                     </div>
                     <div className="lastname">
-                        <label>Lastname</label>
-                        <input placeholder="Ajouter votre nom" defaultValue="Bastianaggi" />
+                        <label>Nom</label>
+                        <input 
+                        name="lastname"
+                        placeholder="Ajouter votre nom" 
+                        defaultValue={values.lastname || defaultValue.lastname} 
+                        onChange={onIdentityUpdate} 
+                        />
                     </div>
-                </div>   
+                </Flex>   
             </div>
             <div className="birthdate">
                 <SelectDate
-                    value={date}
-                    onDateChange={handleChange}
+                    name="birthdate"
+                    value={values.birthdate || defaultValue.birthdate}
+                    onDateChange={onIdentityBirthdateUpdate}
                     className="date-picker"
                 />
             </div>
             <div className="profile">
                 <label>Profil</label>
-                <input placeholder="Ajouter un titre" defaultValue="Developpeur Front-End Junior" />
+                <input 
+                name="profile"
+                placeholder="Ajouter un profil" 
+                defaultValue={values.profile || defaultValue.profile} 
+                onChange={onIdentityUpdate} 
+                />
             </div>
             <div className="status">
                 <label>Statut</label>
-                <input placeholder="Ajouter un titre" defaultValue="Etudiant / Salarié" />
+                <input 
+                name="status"
+                placeholder="Ajouter un statut" 
+                defaultValue={values.status || defaultValue.status} 
+                onChange={onIdentityUpdate} 
+                />
             </div>
             <div className="description">
                 <label>Description</label>
                 <textarea 
+                name="description"
                 placeholder="Ajouter une description" 
-                defaultValue="Je travaille actuellement chez Qwant Music situé sur Ajaccio en Corse et je suis une formation de Développeur Web Junior sur OpenClassrooms.
-
-                Ce portfolio a pour but de présenter les diiférents services proposés ainsi que les projets sur lesquels j'ai travaillé. Vous pouvez également visualiser mon CV et le télécharger.
-                
-                Si vous avez une question, ou si vous avez simplement besoin d'un renseignement, vous pouvez me contacter en cliquant ici: "  
+                defaultValue={values.description || defaultValue.description}  
+                onChange={onIdentityUpdate}
                 />
             </div>
         </div>
     )
 }
+
+Identity.propTypes = {
+    onIdentityUpdate: PropTypes.func,
+    values: PropTypes.object
+  }
     
 export default Identity;

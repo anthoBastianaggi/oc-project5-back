@@ -2,16 +2,25 @@
 
 .layout {
     background-color: #f5f5f5;
+    .info-message {
+        position: relative;
+        width: 100%;
+        display: block;
+        height: 42px;
+        line-height: 42px;
+        color: #0c5460;
+        background-color: #d1ecf1;
+        border-color: #bee5eb;
+    }
+    
     .wrap {
         height: 100%;
         .project-header {
-            display: flex;
             position: relative;
             margin-bottom: 3rem;
             .project-title {
                 text-align: left;
                 width: 100%;
-                display: flex;
                 justify-content: left;
                 flex: 0 0 66.333%;
                 max-width: 66.333%;
@@ -19,23 +28,15 @@
                 position: relative;
                 .title {
                     margin: 0;
-                    line-height: 1;
-                    height: 38.4px;
-                    font-size: 2rem;
                 }
             }
             .project-settings {
-                display: flex;
-                justify-content: end;
                 width: 100%;
                 flex: 0 0 33.333333%;
                 max-width: 33.333333%;
                 left: 66.66666%;
                 position: relative;
-                .button-add-project, .button-widget {
-                    display: flex;
-                    justify-content: end;
-                    align-items: center;
+                .button-add-project {
                     .btn-add-project {
                         background-color: #0070FF;
                         color: #fff;
@@ -74,7 +75,6 @@
       
         .content-project {
             position: relative;
-            display: flex;
             height: 100%;
             .content-edit {
                 width: 100%;
@@ -124,6 +124,10 @@
                     width: 100%;
                     padding: 2px 10px;
                 }
+
+                .input-image {
+                    margin-bottom: 10px;
+                }
             }
         }
     }
@@ -133,11 +137,6 @@
     .layout {
         .wrap {
             .project-header {
-                .project-title {
-                    .title {
-                        font-size: 1.9rem;
-                    }
-                }
                 .project-settings {
                     .button-widget {
                        display: flex;
@@ -147,7 +146,6 @@
 
             .content-project {
                 .content-edit {
-                    width: 100%;
                     margin-right: 0px;
                     transition: margin-right 1s;
                     &.active {
@@ -168,23 +166,14 @@
         .wrap {
             .project-header {
                 display: block;
-                position: relative;
                 margin: -20px -20px 3rem -20px;
                 .project-title {
-                    text-align: left;
-                    width: 100%;
-                    display: flex;
-                    justify-content: left;
                     max-width: 100%;
                     right: 0;
                     padding: 10px 20px;
                     position: relative;
                 }
                 .project-settings {
-                    display: flex;
-                    justify-content: end;
-                    width: 100%;
-                    position: relative;
                     padding: 10px 20px;
                     background-color: white;
                     border-bottom: 1px solid #e2e4e7;

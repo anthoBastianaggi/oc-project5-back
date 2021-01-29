@@ -2,17 +2,25 @@
 
 .layout {
     background-color: #f5f5f5;
+    .success-message {
+        position: relative;
+        width: 100%;
+        display: block;
+        height: 42px;
+        line-height: 42px;
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
     .wrap {
         padding: 20px;
         overflow: hidden;
         .about-header {
-            display: flex;
             position: relative;
             margin-bottom: 3rem;
             .about-title {
                 text-align: left;
                 width: 100%;
-                display: flex;
                 justify-content: left;
                 flex: 0 0 66.333%;
                 max-width: 66.333%;
@@ -20,23 +28,15 @@
                 position: relative;
                 .title {
                     margin: 0;
-                    line-height: 1;
-                    height: 38.4px;
-                    font-size: 2rem;
                 }
             }
             .about-settings {
-                display: flex;
-                justify-content: end;
                 width: 100%;
                 flex: 0 0 33.333333%;
                 max-width: 33.333333%;
                 left: 66.66666%;
                 position: relative;
-                .button-update-about, .button-widget {
-                    display: flex;
-                    justify-content: end;
-                    align-items: center;
+                .button-update-about {
                     .btn-update-about {
                         background-color: #0070FF;
                         color: #fff;
@@ -79,7 +79,6 @@
       
         .content-about {
             position: relative;
-            display: flex;
             height: 100%;
             .content-edit {
                 width: 100%;
@@ -104,6 +103,10 @@
                     width: 100%;
                     padding: 2px 10px;
                 }
+
+                .input-image {
+                    margin-bottom: 10px;
+                }
             }
         }
     }
@@ -113,11 +116,6 @@
     .layout {
         .wrap {
             .about-header {
-                .about-title {
-                    .title {
-                        font-size: 1.9rem;
-                    }
-                }
                 .about-settings {
                     .button-widget {
                        display: flex;
@@ -127,7 +125,6 @@
 
             .content-about {
                 .content-edit {
-                    width: 100%;
                     margin-right: 0px;
                     transition: margin-right 1s;
                     &.active {
@@ -148,23 +145,13 @@
         .wrap {
             .about-header {
                 display: block;
-                position: relative;
                 margin: -20px -20px 3rem -20px;
                 .about-title {
-                    text-align: left;
-                    width: 100%;
-                    display: flex;
-                    justify-content: left;
                     max-width: 100%;
                     right: 0;
                     padding: 10px 20px;
-                    position: relative;
                 }
                 .about-settings {
-                    display: flex;
-                    justify-content: end;
-                    width: 100%;
-                    position: relative;
                     padding: 10px 20px;
                     background-color: white;
                     border-bottom: 1px solid #e2e4e7;

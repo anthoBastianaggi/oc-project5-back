@@ -21,31 +21,31 @@ import AddSkill from './views/Skills/add/AddSkill';
 import CategorySkill from './views/Skills/category/CategorySkill';
 import UpdateSkill from './views/Skills/Update/UpdateSkill';
 import UpdateCategorySkill from './views/Skills/category/Update/UpdateCategorySkill';
+import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
 
 ReactDOM.render(
     <BrowserRouter>
         <div className="app">
             <Switch>
-                <Redirect exact from="/" to="/home" />
                 <Route path={"/admin"} component={() => LayoutAdmin(Admin)} />
-                <Route path={"/home"} component={() => Layout(Home)} />
-                <Route path={"/about"} component={() => Layout(About)} />
-                <Route path={"/skills"} component={() => Layout(Skills)} />
-                <Route path={"/update-skill"} component={() => Layout(UpdateSkill)} />
-                <Route path={"/add-skill"} component={() => Layout(AddSkill)} />
-                <Route path={"/category-skill"} component={() => Layout(CategorySkill)} />
-                <Route path={"/update-category-skill"} component={() => Layout(UpdateCategorySkill)} />
-                <Route path={"/services"} component={() => Layout(Services)} />
-                <Route path={"/update-service/:id"} component={() => Layout(UpdateService)} />
-                <Route path={"/add-service"} component={() => Layout(AddService)} />
-                <Route path={"/projects"} component={() => Layout(Projects)} />
-                <Route path={"/update-project"} component={() => Layout(UpdateProject)} />
-                <Route path={"/add-project"} component={() => Layout(AddProject)} />
-                <Route path={"/category-project"} component={() => Layout(CategoryProject)} />
-                <Route  path="/update-category-project" component={() => Layout(UpdateCategoryProject)} />
+                <PrivateRoute component={() => Layout(Home)} path="/" exact />
+                <PrivateRoute component={() => Layout(Home)} path="/home" exact />
+                <PrivateRoute component={() => Layout(About)} path="/about" exact />
+                <PrivateRoute component={() => Layout(Skills)} path="/skills" exact />
+                <PrivateRoute component={() => Layout(UpdateSkill)} path={"/update-skill/:id"} exact />
+                <PrivateRoute component={() => Layout(AddSkill)} path={"/add-skill"} exact />
+                <PrivateRoute component={() => Layout(CategorySkill)} path={"/category-skill"} exact />
+                <PrivateRoute component={() => Layout(UpdateCategorySkill)} path={"/update-category-skill/:id"} exact />
+                <PrivateRoute component={() => Layout(Services)} path={"/services"} exact />
+                <PrivateRoute component={() => Layout(UpdateService)} path={"/update-service/:id"} exact />
+                <PrivateRoute component={() => Layout(AddService)} path={"/add-service"} exact />
+                <PrivateRoute component={() => Layout(Projects)} path={"/projects"} exact />
+                <PrivateRoute component={() => Layout(UpdateProject)} path={"/update-project/:id"} exact />
+                <PrivateRoute component={() => Layout(AddProject)} path={"/add-project"} exact />
+                <PrivateRoute component={() => Layout(CategoryProject)} path={"/category-project"} exact />
+                <PrivateRoute component={() => Layout(UpdateCategoryProject)} path="/update-category-project/:id" exact />
             </Switch>
-        </div>
-        
+        </div>    
     </BrowserRouter>,
     document.getElementById('root')
 );

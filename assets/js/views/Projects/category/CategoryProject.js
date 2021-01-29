@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CategoryProject.module.scss';
 import cs from 'classnames';
 import Button from '../../../components/Button/Button';
@@ -13,9 +13,17 @@ import Link from '../../../components/Link/Link';
 import Modal from '../../../components/Modal/Modal';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { categoryProjectService } from '../../../server/services/projects/category/category-project';
+import Flex from '../../../components/Flex/Flex';
+import Title from '../../../components/Title/Title';
 
 const CategoryProject = () => {
     const [open, setOpen] = useState(false);
+    const [name, setName] = useState(null);
+    const [slug, setSlug] = useState(null);
+    const [data, setData] = useState([]);
+    const [showMessageDelete, setShowMessageDelete] = useState(false);
+    const [showMessage, setShowMessage] = useState(false);
 
     function openModal() {
         setOpen(true);
@@ -25,13 +33,11 @@ const CategoryProject = () => {
         setOpen(false);
     }
 
-    const data = [
-        { id: "1", name: "App Web", slug: "app-web" },
-        { id: "2", name: "CMS", slug: "cms" },
-        { id: "3", name: "Sites Vitrines", slug: "sites-vitrines" },
-        { id: "4", name: "Web Design", slug: "web-design" },
-        { id: "5", name: "Web Develop", slug: "web-develop" }
-    ];
+    function deleteCategoryProject(id) {
+        categoryProjectService.deleteCategoryProject(id);
+        setShowMessageDelete(true);
+        window.setTimeout("location=('/category-project');", 2000);
+    }
 
     const columns = [
         {
@@ -57,51 +63,66 @@ const CategoryProject = () => {
         }
     ];   
 
-    const renderDeleteCategoryProjectModal = () => (
-        <Modal className="modal-category-project" onClose={closeModal} title="Supprimer categorie projet">
+    function addCategoryProjectFetch() {
+        if(name && slug) {
+            categoryProjectService.postCategoryProject(name, slug);
+            setShowMessage(true);
+            window.setTimeout("location=('/category-project');", 2000);
+        }    
+    };
+
+    useEffect(() => {
+        categoryProjectService.getCategoryProject().then(result => setData(result))
+    }, []);
+
+    const renderDeleteCategoryProjectModal = (id) => (
+        <Modal className="modal-category-project" onClose={closeModal} title="Supprimer catégorie du projet">
             <form className="modal-container" role="form">
                 <div className="modal-icon">
                     <FontAwesomeIcon icon={faExclamationCircle} />
                 </div>
-                <p className="modal-description">Êtes-vous vraiment certains de vouloir supprimer la categorie du projet ?</p>
-                <p className="modal-description">Cette action irrémédiable supprimera la categorie de votre portfolio.</p>
-                <p className="modal-description">Cliquez sur le bouton pour confirmer la suppression de votre categorie.</p>
-                <Button className={cs("modal-button", "delete")} variant="primary" type="submit" label="Supprimer la categorie" />
+                <p className="modal-description">Êtes-vous vraiment certains de vouloir supprimer la catégorie du projet ?</p>
+                <p className="modal-description">Cette action irrémédiable supprimera la catégorie de votre portfolio.</p>
+                <p className="modal-description">Cliquez sur le bouton pour confirmer la suppression de votre catégorie.</p>
+                <Button className={cs("modal-button", "delete-btn")} variant="primary" type="button" label="Supprimer la catégorie" onClick={(e) => deleteCategoryProject(id)} />
                 <Button className={cs("modal-button", "cancel")} variant="secondary" type="button" label="Annuler"  onClick={closeModal} />
             </form>
         </Modal>
     );
 
     return (
+        <>
+        {showMessageDelete && <span className="success-message"><strong>Succès !</strong> La catégorie du projet a bien été supprimée !</span>}
+        {showMessage && <span className="info-message"><strong>Info !</strong> La catégorie du projet a bien été ajoutée !</span>}
         <div className="wrap category-project">
-            <div className="category-project-header">
-                <div className="category-project-settings">
-                    <div className="button-add-category-project">
-                        <Button variant="primary" type="button" label="Publier" className="btn-add-category-project" />
-                    </div>
-                </div>  
-                <div className="category-project-title">
-                    <h1 className="title">Categorie projet</h1>
-                </div>  
-            </div>
-            <div className="content-category-project">
+            <Flex className="category-project-header">
+                <Flex className="category-project-settings" end>
+                    <Flex className="button-add-category-project" center>
+                        <Button variant="primary" type="button" label="Publier" className="btn-add-category-project" onClick={(e) => addCategoryProjectFetch()} />
+                    </Flex>
+                </Flex>  
+                <Flex className="category-project-title">
+                    <Title as="h1" stylesTitle="stylesH1" className="title">Catégorie du projet</Title>
+                </Flex>  
+            </Flex>
+            <Flex className="content-category-project">
                 <div className="content-edit">
-                    <h2 >Ajouter une nouvelle catégorie</h2>
+                    <Title as="h2" stylesTitle="stylesH2" >Ajouter une nouvelle catégorie</Title>
                     <div className="name-category-project">
                         <label>Nom</label>
-                        <input placeholder="Ajouter un nom de categorie" />
+                        <input placeholder="Ajouter un nom de catégorie" onChange={(e) => { setName(e.target.value) }} />
                     </div>
                     <div className="slug-category-project">
                         <label>Slug</label>
-                        <input placeholder="Ajouter un slug" />
+                        <input placeholder="Ajouter un slug" onChange={(e) => { setSlug(e.target.value) }} />
                     </div>
                 </div>
                 <div className="content-table">
-                    <h2>Liste des catégories</h2>
-                    <div className="action-select">
+                    <Title as="h2" stylesTitle="stylesH2">Liste des catégories</Title>
+                    <Flex className="action-select">
                         <Select optionsList={optionsList} />
                         <Button variant="tertiary" type="button" label="Appliquer" className="btn-apply" />
-                    </div>
+                    </Flex>
                     <Table>
                         <TableHead>
                             <TableRow>
@@ -123,14 +144,15 @@ const CategoryProject = () => {
                                 </TableDataCell>
                                 <TableDataCell>
                                     <span className="item">{name}</span>
-                                    <div className="actions">
+                                    <Flex className="actions">
                                         <div className="update">
-                                            <Link href="/update-category-project" label="Modifier" />
+                                            <Link href={`/update-category-project/${id}`} label="Modifier" />
                                         </div>
                                         <div className="delete">
                                             <Button variant="tertiary" type="button" className="btn-open-modal" label="Supprimer" onClick={openModal} />
+                                            {open && renderDeleteCategoryProjectModal(id)}
                                         </div>
-                                    </div>
+                                    </Flex>
                                 </TableDataCell>
                                 <TableDataCell>
                                     <span className="item">{slug}</span>
@@ -139,10 +161,10 @@ const CategoryProject = () => {
                         ))}
                         </TableBody>
                     </Table>
-                    {open && renderDeleteCategoryProjectModal()}
                 </div>
-            </div>
+            </Flex>
         </div>
+        </>
     )
 }
     

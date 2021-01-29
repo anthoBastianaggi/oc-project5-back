@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Dashboard.module.scss';
 import MenuList from '../MenuList/MenuList';
+import Flex from '../Flex/Flex';
 import { useRouteMatch } from 'react-router-dom';
-import cx from 'classnames';
-import { faHome, faUser, faCode, faFolderOpen, faTools } from '@fortawesome/free-solid-svg-icons'
+import { aboutSection } from '../../server/services/about';
+import { faHome, faUser, faCode, faFolderOpen, faTools } from '@fortawesome/free-solid-svg-icons';
 
 const Dashboard = () => {
+    const [data, setData] = useState([]);
+
+    async function dataDashboard() {
+      await aboutSection.getAbout().then(result => setData(result))
+  }
+  useEffect(() => {
+    dataDashboard()
+  }, []);
+
+  console.log(data[0]?.firstname);
+
     const menuItems = [
-        { id: "home", href: "/home", label: "home", icon: faHome, isActive: () => useRouteMatch("/home") },
-        { id: "about", href: "/about", label: "about", icon: faUser, isActive: () => useRouteMatch("/about") },
+        { id: "home", href: "/home", label: "accueil", icon: faHome, isActive: () => useRouteMatch("/home") },
+        { id: "about", href: "/about", label: "à propos", icon: faUser, isActive: () => useRouteMatch("/about") },
         { 
           id: "skills", 
-          label: "skills", 
+          label: "compétences", 
           href: "/skills",
           icon: faCode,
           isActive: () => useRouteMatch("/skills"), 
@@ -30,7 +42,7 @@ const Dashboard = () => {
             },
             {
               id:"sub-menu-category-skill",
-              label: "Categorie", 
+              label: "Catégorie", 
               href: "/category-skill",
               isActiveSubMenu: () => useRouteMatch("/category-skill") 
             }
@@ -59,14 +71,14 @@ const Dashboard = () => {
         },
         { 
           id: "project", 
-          label: "project", 
+          label: "portfolio", 
           href: "/projects",
           icon: faFolderOpen,
           isActive: () => useRouteMatch("/projects"),
           subMenu: [
             { 
               id:"sub-menu-all-projects",
-              label: "Toutes les projets",
+              label: "Tous les projets",
               href: "/projects",
               isActiveSubMenu: () => useRouteMatch("/projects") 
             },
@@ -78,7 +90,7 @@ const Dashboard = () => {
             },
             {
               id:"sub-menu-category-project",
-              label: "Categorie", 
+              label: "Catégorie", 
               href: "/category-project",
               isActiveSubMenu: () => useRouteMatch("/category-project") 
             }
@@ -91,26 +103,26 @@ const Dashboard = () => {
   return (
     <div className="wrapper">
       <div className="sidebar">
-        <div className="user-panel">
+        <Flex className="user-panel" center>
           <div className="user-image">
-            <img src="http://0.gravatar.com/avatar/05e213faf044f681d8f974ead9c2a167?s=26&d=mm&r=g"></img>
+              <img src="http://0.gravatar.com/avatar/05e213faf044f681d8f974ead9c2a167?s=26&d=mm&r=g"></img>
           </div>
           <ul className="user-info">
             <li className="info">
-              <span className="username">Anthony Bastianaggi</span>
+              <span className="username">{data[0]?.firstname + " " + data[0]?.lastname}</span>
             </li>
             <li className="info">
-              <span className="user-role">Administrateur</span>
+              <span className="user-role">{data[0]?.roles}</span>
             </li>
           </ul>
-        </div>   
+        </Flex>   
         <MenuList data={filterData} />
       </div>
       <header className="header">
         <nav className="navigation">
           <div className="admin-container">
               <div className="admin-info">
-                <span>Bonjour Thedevildark2a</span>
+                <span>{"Bonjour " + data[0]?.username}</span>
               </div>
           </div>
         </nav>

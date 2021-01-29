@@ -1,6 +1,6 @@
 import React from "react";
 
-const Field = ({ items, value, label,  name, onChange, renderOption, generateValue, classNameError }) => {
+const Field = ({ items, value, label, name, onChange, renderOption, generateValue, classNameError }) => {
     return (
         <div className={name}>
             <label data-label={name}>{label}</label>

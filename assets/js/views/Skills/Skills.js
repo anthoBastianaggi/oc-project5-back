@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Skills.module.scss';
 import cs from 'classnames';
 import Table from '../../components/Table/Table';
@@ -13,9 +13,14 @@ import Link from '../../components/Link/Link';
 import Modal from '../../components/Modal/Modal';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { skillsSection } from '../../server/services/skills/skills';
+import Title from '../../components/Title/Title';
+import Flex from '../../components/Flex/Flex';
     
 const Skills = () => {
     const [open, setOpen] = useState(false);
+    const [data, setData] = useState([]);
+    const [showMessage, setShowMessage] = useState(false);
 
     function openModal() {
         setOpen(true);
@@ -25,11 +30,11 @@ const Skills = () => {
         setOpen(false);
     }
 
-    const data = [
-        { id: "1", name: "javascript", category: "Langages" },
-        { id: "2", name: "bootstrap", category: "Libraries and Frameworks" },
-        { id: "3", name: "Prestashop", category: "CMS" }
-    ];
+    function deleteSkill(id) {
+        skillsSection.deleteSkill(id);
+        setShowMessage(true);
+        window.setTimeout("location=('/skills');", 2000);
+    }
 
     const columns = [
         {
@@ -39,7 +44,7 @@ const Skills = () => {
         },
         {
             id: "2",
-            name: "Categories",
+            name: "Catégories",
             slug: "category"
         },
     ];
@@ -55,28 +60,34 @@ const Skills = () => {
         }
     ];   
 
-    const renderDeleteSkillsModal = () => (
-        <Modal className="modal-skills" onClose={closeModal} title="Supprimer skills">
+    useEffect(() => {
+        skillsSection.getSkills().then(result => setData(result))
+    }, []);
+
+    const renderDeleteSkillsModal = (id) => (
+        <Modal className="modal-skills" onClose={closeModal} title="Supprimer compétence">
             <form className="modal-container" role="form">
                 <div className="modal-icon">
                     <FontAwesomeIcon icon={faExclamationCircle} />
                 </div>
-                <p className="modal-description">Êtes-vous vraiment certains de vouloir supprimer le skill ?</p>
-                <p className="modal-description">Cette action irrémédiable supprimera le skill de votre portfolio.</p>
-                <p className="modal-description">Cliquez sur le bouton pour confirmer la suppression de votre skill.</p>
-                <Button className={cs("modal-button", "delete")} variant="primary" type="submit" label="Supprimer le skill" />
+                <p className="modal-description">Êtes-vous vraiment certains de vouloir supprimer la compétence ?</p>
+                <p className="modal-description">Cette action irrémédiable supprimera la compétence de votre portfolio.</p>
+                <p className="modal-description">Cliquez sur le bouton pour confirmer la suppression de votre compétence.</p>
+                <Button className={cs("modal-button", "delete-btn")} variant="primary" type="button" label="Supprimer compétence" onClick={(e) => deleteSkill(id)} />
                 <Button className={cs("modal-button", "cancel")} variant="secondary" type="button" label="Annuler"  onClick={closeModal} />
             </form>
         </Modal>
     );
 
     return (
+        <>
+        {showMessage && <span className="success-message"><strong>Succès !</strong> La compétence a bien été supprimée !</span>}
         <div className="wrap">
-            <h1 className="skills-title">Skills</h1>
-            <div className="action-select">
+            <Title as="h1" stylesTitle="stylesH1" className="skills-title">Compétences</Title>
+            <Flex className="action-select">
                 <Select optionsList={optionsList} />
                 <Button variant="tertiary" type="button" label="Appliquer" className="btn-apply" />
-            </div>
+            </Flex>
             <Table>
                 <TableHead>
                     <TableRow>
@@ -98,24 +109,25 @@ const Skills = () => {
                         </TableDataCell>
                         <TableDataCell>
                             <span className="item">{name}</span>
-                            <div className="actions">
+                            <Flex className="actions">
                                 <div className="update">
-                                    <Link href="/update-skill" label="Modifier" />
+                                    <Link href={`/update-skill/${id}`} label="Modifier" />
                                 </div>
                                 <div className="delete">
                                     <Button variant="tertiary" type="button" className="btn-open-modal" label="Supprimer" onClick={openModal} />
+                                    {open && renderDeleteSkillsModal(id)}
                                 </div>
-                            </div>
+                            </Flex>
                         </TableDataCell>
                         <TableDataCell>
-                            <span className="item">{category}</span>
+                            <span className="item">{category.name}</span>
                         </TableDataCell>
                     </TableRow>
                 ))}
                 </TableBody>
             </Table>
-            {open && renderDeleteSkillsModal()}
         </div>
+        </>
     )
 }
     
