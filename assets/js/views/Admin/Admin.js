@@ -1,48 +1,63 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import './Admin.module.scss';
 import { useForm } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
+import { userService } from '../../server/services/user';
+import cs from 'classnames';
+import Flex from '../../components/Flex/Flex';
+import Title from '../../components/Title/Title';
+import { objectOf } from 'prop-types';
 
 const Admin = () => {
     const { register, errors, handleSubmit } = useForm({});
+    const [username, setUsername] = useState(null);
+    const [password, setPassword] = useState(null);
+    const [validation, setValidation] = useState(true);
 
-    const onSubmit = () => {
-        window.location.href = '/home';
-      };
+    function onSubmit() {
+        if (userService.login(username, password).then(value => value === undefined)) {
+            setValidation(false);
+        }
+        return userService.login(username, password);
+    }
 
     return (
         <div className="wrap">
             <div className="container">
-                <div className="content">
+                <Flex className="content" wrap>
                     <div className="title">
-                        <h1>Connectez-vous à votre compte</h1>
+                        <Title as="h1" stylesTitle="stylesH1">Connectez-vous à votre compte</Title>
                     </div>
                     <div className="infobox">
                         <div className="infobox-container">
+                            {!validation && <span className="errorMessage">Erreur identifiant ou mot de passe incorrect.</span> }
                             <form className="form" onSubmit={handleSubmit(onSubmit)}>
                                 <div className="form-group">
-                                    <div className="group">
-                                        <label className="label-form">Identifiant ou adresse e-mail</label>
+                                    <Flex className={cs("group", errors.email ? 'has-error' : '')} wrap>
+                                        <label className="label-form">Identifiant</label>
                                         <span className="icon"><FontAwesomeIcon icon={faUser} /></span>
                                         <input
                                             name="email"
-                                            type="email"
-                                            placeholder="Entrez votre identifiant ou adresse e-mail"
+                                            type="text"
+                                            placeholder="Entrez votre identifiant"
                                             className="input-form"
                                             ref={register({
-                                                required: "You must specify email",
-                                                pattern: {
-                                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                                message: "invalid email address"
-                                                }
+                                                required: true,
+                                                pattern: "[A-F][0-9]{5}"
                                             })}
+                                            onChange={(e) => { setUsername(e.target.value) }}
                                         />
-                                        {errors.email && <p className="error-message">{errors.email.message}</p>}
-                                    </div>
+                                        {errors.email?.type === "required" && (
+                                            <p className="error-message">You must specify email or username</p>
+                                        )}
+                                        {errors.email?.type === "pattern" && (
+                                        <p className="error-message">Invalid email address or username</p>
+                                        )}
+                                    </Flex>
                                 </div>
                                 <div className="form-group">
-                                    <div className="group">
+                                    <Flex className={cs("group", errors.password ? 'has-error' : '')} wrap>
                                         <label className="label-form">Mot de passe</label>
                                         <span className="icon"><FontAwesomeIcon icon={faLock} /></span>
                                         <input
@@ -51,30 +66,33 @@ const Admin = () => {
                                             placeholder="Entrez votre mot de passe"
                                             className="input-form"
                                             ref={register({
-                                            required: "You must specify a password",
-                                            minLength: {
-                                                value: 8,
-                                                message: "Password must have at least 8 characters"
-                                            }
+                                            required: true,
+                                            minLength: 8
                                             })}
+                                            onChange={(e) => { setPassword(e.target.value) }}
                                         />
-                                        {errors.password && <p className="error-message">{errors.password.message}</p>}
-                                    </div>
+                                        {errors.password?.type === "required" && (
+                                            <p className="error-message">You must specify a password</p>
+                                        )}
+                                        {errors.password?.type === "minLength" && (
+                                        <p className="error-message">Password must have at least 8 characters</p>
+                                        )}
+                                    </Flex>
                                 </div>
                                 <div className="form-group">
-                                    <div className="group">
+                                    <Flex className="group" wrap>
                                         <a href="">(J'ai oublié mon mot de passe)</a>
-                                        <div className="group-button">
+                                        <Flex className="group-button">
                                             <input name="checkbox" type="checkbox" />
                                             <label className="label-form">Se souvenir de moi</label>
                                             <input className="input-form-submit" type="submit" value="Se connecter" />
-                                        </div>
-                                    </div>
+                                        </Flex>
+                                    </Flex>
                                 </div>
                             </form>
                         </div>
                     </div>
-                </div>
+                </Flex>
             </div>
         </div>
     )

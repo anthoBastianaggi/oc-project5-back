@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Widget.module.scss';
+import Flex from '../Flex/Flex';
 
 const Widget = ({ id, label, children }) => {
     return (
-        <div id={id} className="widget">
+        <Flex id={id} className="widget" column>
             <label className="label">{label}</label>
             <div className="box">
                 <div className="box-container">
                     {children}
                 </div>
             </div>
-        </div>
+        </Flex>
     );
 }
 

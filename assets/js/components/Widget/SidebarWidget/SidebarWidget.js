@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './SidebarWidget.module.scss';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../Button/Button';
+import Flex from '../../Flex/Flex';
 
 
 const SidebarWidget = ({ opened, className, children, onClose = undefined, setSidebarWidgetRef }) => {
@@ -34,9 +35,9 @@ const SidebarWidget = ({ opened, className, children, onClose = undefined, setSi
     useLockBodyScroll();
     return (
         <div className={className}>
-            <div className="button-widget">
+            <Flex className="button-widget" end>
                 <Button variant="tertiary" type="button" className="btn-close-widget" icon={faTimes} onClick={onClose} />
-            </div>
+            </Flex>
             <div className="content-widget-sidebar" ref={(ref) => setSidebarWidgetRef(ref)}>
                 {children}
             </div>

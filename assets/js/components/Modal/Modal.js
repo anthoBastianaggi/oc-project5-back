@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Button from '../Button/Button';
+import Flex from '../Flex/Flex';
 import cs from 'classnames';
 import './Modal.module.scss';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -32,7 +33,7 @@ const Modal = ({ className, children, onClose, overflowControl = true, title }) 
     return (
         <>
             <div className="overlay"></div>
-            <div id="modal" className={cs("modal", className)}>
+            <Flex id="modal" className={cs("modal", className)} center>
                 <div className="modal-content" role="dialog" aria-modal="true"  ref={modal}>
                     {onClose && (
                         <div className="modal-header">
@@ -42,7 +43,7 @@ const Modal = ({ className, children, onClose, overflowControl = true, title }) 
                     )}
                     {children}
                 </div>
-            </div>
+            </Flex>
         </>
     );
 }

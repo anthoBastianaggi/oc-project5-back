@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Projects.module.scss';
 import cs from 'classnames';
 import Table from '../../components/Table/Table';
@@ -13,9 +13,14 @@ import Link from '../../components/Link/Link';
 import Modal from '../../components/Modal/Modal';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-    
+import { projectsSection } from '../../server/services/projects/projects';
+import Flex from '../../components/Flex/Flex';
+import Title from '../../components/Title/Title';
+
 const Projects = () => {
     const [open, setOpen] = useState(false);
+    const [data, setData] = useState([]);
+    const [showMessage, setShowMessage] = useState(false);
 
     function openModal() {
         setOpen(true);
@@ -24,13 +29,13 @@ const Projects = () => {
     function closeModal() {
         setOpen(false);
     }
-
-    const data = [
-        { id: "2", name: "WebAgency", category: "Sites Vitrines" },
-        { id: "3", name: "Blog de Jean Forteroche", category: "Web Develop" },
-        { id: "4", name: "VeloV : Réservation de vélo", category: "App Web" }
-    ];
     
+    function deleteProject(id) {
+        projectsSection.deleteProject(id);
+        setShowMessage(true);
+        window.setTimeout("location=('/projects');", 2000);
+    }
+
     const columns = [
         {
           id: "1",
@@ -39,7 +44,7 @@ const Projects = () => {
         },
         {
             id: "2",
-            name: "Categories",
+            name: "Catégorie",
             slug: "category"
         },
     ];
@@ -55,7 +60,11 @@ const Projects = () => {
         }
     ];   
 
-    const renderDeleteProjectModal = () => (
+    useEffect(() => {
+        projectsSection.getProjects().then(result => setData(result))
+    }, []);
+
+    const renderDeleteProjectModal = (id) => (
         <Modal className="modal-project" onClose={closeModal} title="Supprimer projet">
             <form className="modal-container" role="form">
                 <div className="modal-icon">
@@ -64,19 +73,21 @@ const Projects = () => {
                 <p className="modal-description">Êtes-vous vraiment certains de vouloir supprimer le projet ?</p>
                 <p className="modal-description">Cette action irrémédiable supprimera le projet de votre portfolio.</p>
                 <p className="modal-description">Cliquez sur le bouton pour confirmer la suppression de votre projet.</p>
-                <Button className={cs("modal-button", "delete")} variant="primary" type="submit" label="Supprimer le projet" />
+                <Button className={cs("modal-button", "delete-btn")} variant="primary" type="button" label="Supprimer le projet" onClick={(e) => deleteProject(id)} />
                 <Button className={cs("modal-button", "cancel")} variant="secondary" type="button" label="Annuler"  onClick={closeModal} />
             </form>
         </Modal>
     );
 
     return (
+        <>
+        {showMessage && <span className="success-message"><strong>Succès !</strong> Le projet a bien été supprimé !</span>}
         <div className="wrap">
-            <h1 className="projects-title">Projects</h1>
-            <div className="action-select">
+            <Title as="h1" stylesTitle="stylesH1" className="projects-title">Portfolio</Title>
+            <Flex className="action-select">
                 <Select optionsList={optionsList} />
                 <Button variant="tertiary" type="button" label="Appliquer" className="btn-apply" />
-            </div>
+            </Flex>
             <Table>
                 <TableHead>
                     <TableRow>
@@ -98,24 +109,25 @@ const Projects = () => {
                         </TableDataCell>
                         <TableDataCell>
                             <span className="item">{name}</span>
-                            <div className="actions">
+                            <Flex className="actions">
                                 <div className="update">
-                                    <Link href="/update-project" label="Modifier" />
+                                    <Link href={`/update-project/${id}`} label="Modifier" />
                                 </div>
                                 <div className="delete">
                                     <Button variant="tertiary" type="button" className="btn-open-modal" label="Supprimer" onClick={openModal} />
+                                    {open && renderDeleteProjectModal(id)}
                                 </div>
-                            </div>
+                            </Flex>
                         </TableDataCell>
                         <TableDataCell>
-                            <span className="item">{category}</span>
+                            <span className="item">{category.name}</span>
                         </TableDataCell>
                     </TableRow>
                 ))}
                 </TableBody>
             </Table>
-            {open && renderDeleteProjectModal()}
         </div>
+        </>
     )
 }
     

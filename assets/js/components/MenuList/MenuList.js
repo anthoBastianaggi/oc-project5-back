@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './MenuList.module.scss';
-import  Link from '../Link/Link';
+import Link from '../Link/Link';
 import cx from 'classnames';
 
 const MenuList = ({ data }) => {

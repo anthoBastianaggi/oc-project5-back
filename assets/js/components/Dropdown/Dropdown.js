@@ -3,6 +3,7 @@ import Link from '../Link/Link';
 import cs from 'classnames';
 import cx from 'classnames';
 import './Dropdown.module.scss';
+import Flex from '../Flex/Flex';
 
 const Dropdown = ({ data, className, opener }) => {
     const [open, setOpen] = useState(false);
@@ -33,7 +34,7 @@ const Dropdown = ({ data, className, opener }) => {
                 onClick: () => setOpen(!open),
             })}
             {open ? (
-                <div className={"boxContainer"}>
+                <Flex className={"boxContainer"}>
                     <ul className={"sous-menu-item"}>
                         {data.map((item) => (
                             <li key={item.id} className="sous-menu-item-list">
@@ -42,7 +43,7 @@ const Dropdown = ({ data, className, opener }) => {
                             ))
                         }
                     </ul>
-                </div>
+                </Flex>
             ) : ""}
         </div>
     );

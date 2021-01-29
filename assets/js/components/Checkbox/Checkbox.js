@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cs from 'classnames';
 import './Checkbox.module.scss';
 import PropTypes from 'prop-types';
 
-const Checkbox = ({ className = '', label, name }) => {
-    const [selected, setSelected] = useState(false);
-
-    const changeHandler = e => {
-      setSelected(!selected);
-    };
-
+const Checkbox = ({ className = '', id, label, name, value, onChange, checked }) => {
     return (
         <div className={cs(className, "checkbox-content")}>
             <input
-                type="checkbox"
+                type="radio"
+                id={id}
                 name={name}
-                aria-checked={selected}
-                checked={selected}
-                onChange={changeHandler}
+                value={value}
+                onChange={onChange}
+                defaultChecked={checked}
             />
             <span className="checkbox-label">{label}</span>
         </div>
@@ -27,8 +22,10 @@ const Checkbox = ({ className = '', label, name }) => {
 Checkbox.propTypes = {
     label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    checked: PropTypes.bool,
-    onChange: PropTypes.func
+    id: PropTypes.number,
+    className: PropTypes.string,
+    onChange: PropTypes.func,
+    isSelected: PropTypes.bool
 }
 
 export default Checkbox;

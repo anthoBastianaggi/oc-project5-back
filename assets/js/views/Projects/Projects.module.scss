@@ -1,12 +1,22 @@
 @import '../../../sass/modules/mixins.scss';
 
+.success-message {
+    position: relative;
+    width: 100%;
+    display: block;
+    height: 42px;
+    line-height: 42px;
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
 .wrap {
     .projects-title {
-        text-align: left;
+        justify-content: left;
         margin-bottom: 2.5rem;
     }
     .action-select {
-        display: flex;
         align-items: center;
         height: 50px;
         .btn-apply {
@@ -60,7 +70,6 @@
                     .actions {
                         font-size: 13px;
                         padding: 2px 0 0;
-                        display: flex;
                         position: relative;
                         opacity: 0;
                         .update {
@@ -81,6 +90,48 @@
                                 background-color: transparent;
                                 border: none;
                             }
+
+                            .modal-project {
+                                .modal-container {
+                                    padding: 0 60px 25px;
+                                    @include breakpoint(tactil) {
+                                        max-width: 450px;
+                                        margin: auto;
+                                    }
+
+                                    @media (max-width: 500px) {
+                                        padding: 0 20px 25px;
+                                    }
+                        
+                                    .modal-icon {
+                                        text-align: center;
+                                        margin: 15px 0;
+                                        justify-content: center;
+                                        svg {
+                                            @include size(55px, 55px);
+                                            color: #e53b5b;
+                                        }
+                                    }
+                        
+                                    .modal-description {
+                                        @include font(14px, 1.29, normal, normal);
+                                        margin-bottom: 15px;
+                                        color: #5c6f84;
+                                    }
+                        
+                                    .modal-button {
+                                        min-width: 186px;
+                                        width: 100%;
+                                        height: 40px;
+                                        max-width: 250px;
+                                        margin: 0 auto 10px;
+                                        &.delete-btn {
+                                            background-color: #e53b5b;
+                                            border-color: #e53b5b;
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -91,43 +142,5 @@
                 }
             }
         } 
-    }
-
-    .modal-project {
-        .modal-container {
-            padding: 0 75px 25px;
-            @include breakpoint(tactil) {
-                max-width: 450px;
-                margin: auto;
-            }
-
-            .modal-icon {
-                text-align: center;
-                margin: 15px 0;
-                justify-content: center;
-                svg {
-                    @include size(55px, 55px);
-                    color: #e53b5b;
-                }
-            }
-
-            .modal-description {
-                @include font(14px, 1.29, normal, normal);
-                margin-bottom: 15px;
-                color: #5c6f84;
-            }
-
-            .modal-button {
-                min-width: 186px;
-                width: 100%;
-                height: 40px;
-                max-width: 250px;
-                margin: 0 auto 10px;
-                &.delete {
-                    background-color: #e53b5b;
-                    border-color: #e53b5b;
-                }
-            }
-        }
     }
 }

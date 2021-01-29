@@ -15,26 +15,26 @@ const SelectDate = ({
   onDateChange,
   showErrors = true,
   showLabels = true,
-  yearLabel = "Year",
-  monthLabel = "Month",
-  dayLabel = "Day",
+  yearLabel = "Année",
+  monthLabel = "Mois",
+  dayLabel = "Jour",
   errorFormat = "Invalid date",
   errorMin = "Date must be greater than allowed",
   errorMax = "Date must be less than allowed",
   format = "month/day/year",
   monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
+    "Janvier",
+    "Février",
+    "Mars",
+    "Avril",
+    "Mai",
+    "Juin",
+    "Juillet",
+    "Août",
+    "Septembre",
+    "Octobre",
+    "Novembre",
+    "Décembre"
   ]
 }) => {
   const initialValue = useMemo(() => dateToValues(value), [value]);
@@ -100,7 +100,6 @@ const SelectDate = ({
     [className, validationError]
   );
 
-  console.log(fields)
   return (
     <div className={cls}>
       <div className="date-picker-container">
