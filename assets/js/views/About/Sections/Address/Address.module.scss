@@ -22,6 +22,9 @@
         .address-container {
             .postal-code, .city, .country {
                 flex: 33.333%;
+                @media screen and (max-width: 400px) {
+                    flex: auto;
+                }
             }
 
             .postal-code, .city {

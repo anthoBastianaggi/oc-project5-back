@@ -53,6 +53,27 @@ const AddSkill = () => {
     return (
         <>
         {showMessage && <span className="info-message"><strong>Info !</strong> La compétence a bien été ajoutée !</span>}
+        <SidebarWidget 
+            className={cx("sidebar-widget", { ["active"]: open })}
+            setSidebarWidgetRef={setSidebarWidgetRef}
+            opened={open} 
+            onClose={closeSidebarWidget}
+            id="sidebarWidgetAddSkill"
+        >
+            <Widget id="category-skill" label="Catégorie de compétences">
+                {dataCategory.map(({ id, name }) => (
+                    <Checkbox  
+                    key={id} 
+                    id={id} 
+                    label={name} 
+                    name="category-skill" 
+                    value={id} 
+                    checked={select === name}
+                    onChange={event => handleSelectChange(event)}  
+                    />
+                ))}
+            </Widget>
+        </SidebarWidget>
         <div className="wrap">
             <Flex className="skill-header">
                 <Flex className="skill-settings" end>
@@ -78,26 +99,6 @@ const AddSkill = () => {
                         <input type="number" min="0" max="100" placeholder="Ajouter un pourcentage" onChange={(e) => { setPercentage(e.target.value) }} />
                     </div>
                 </div>
-                <SidebarWidget 
-                className={cx("sidebar-widget", { ["active"]: open })}
-                setSidebarWidgetRef={setSidebarWidgetRef}
-                opened={open} 
-                onClose={closeSidebarWidget}
-                >
-                    <Widget id="category-skill" label="Catégorie de compétences">
-                        {dataCategory.map(({ id, name }) => (
-                            <Checkbox  
-                            key={id} 
-                            id={id} 
-                            label={name} 
-                            name="category-skill" 
-                            value={id} 
-                            checked={select === name}
-                            onChange={event => handleSelectChange(event)}  
-                            />
-                        ))}
-                    </Widget>
-                </SidebarWidget>
                 <div className="content-widget">
                     <Widget id="category-skill" label="Catégorie de compétences">
                         {dataCategory.map(({ id, name }) => (

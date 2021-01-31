@@ -11,20 +11,24 @@
 
     .sidebar-widget {
         display: block;
-        width: 320px;
+        width: 0px;
         position: absolute;
         visibility: hidden;
-        top: -106px;
-        right: -20px;
         transition: all 1s;
         background-color: white;
-        bottom: -20px;
-        transform: translate3d(100%, 0, 0);
+        right: 0;
+        z-index: 1;
+        height: calc(100vh - 2.44rem);
+        top: 0;
+        bottom: 0; 
         &.active {
             visibility: visible;
             transition: all 1s;
-            right: -20px;
-            transform: translate3d(0, 0, 0);
+            right: 0px;
+            width: 320px;
+            .content-widget-sidebar {
+                width: 100%;
+            }
         }
 
         .button-widget {
@@ -42,11 +46,10 @@
         }
     
         .content-widget-sidebar {
-            width: 280px;
             position: relative;
             right: 0;
-            top: 70.4px;
-            margin: 0 auto;
+            top: 76.4px;
+            padding: 0 20px;
 
             .btn-close-widget {
                 color: #555d66;
@@ -75,8 +78,9 @@
     }
 
     .sidebar-widget-about {
+        height: 100%;
         .content-widget-sidebar {
-            top: 141.4px;         
+            top: 148.4px;         
         }
     }
 }

@@ -7,7 +7,7 @@ import { userService } from '../../server/services/user';
 import cs from 'classnames';
 import Flex from '../../components/Flex/Flex';
 import Title from '../../components/Title/Title';
-import { objectOf } from 'prop-types';
+import Link from '../../components/Link/Link';
 
 const Admin = () => {
     const { register, errors, handleSubmit } = useForm({});
@@ -81,7 +81,7 @@ const Admin = () => {
                                 </div>
                                 <div className="form-group">
                                     <Flex className="group" wrap>
-                                        <a href="">(J'ai oublié mon mot de passe)</a>
+                                        <Link href="/forget-password" label="(J'ai oublié mon mot de passe)" className="item-link" />
                                         <Flex className="group-button">
                                             <input name="checkbox" type="checkbox" />
                                             <label className="label-form">Se souvenir de moi</label>

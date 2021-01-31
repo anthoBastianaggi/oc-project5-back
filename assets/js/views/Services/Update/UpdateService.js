@@ -53,6 +53,17 @@ const UpdateService= () => {
     return (
         <>
         {showMessage && <span className="success-message"><strong>Succès !</strong> Les données du service ont bien été mise à jour !</span>}
+        <SidebarWidget 
+            className={cx("sidebar-widget", { ["active"]: open })}
+            setSidebarWidgetRef={setSidebarWidgetRef}
+            opened={open} 
+            onClose={closeSidebarWidget}
+        >
+            <Widget id="icone" label="Icone du service">
+                <label className="label-widget">Ajouter une icone</label>
+                <input className="input-widget" placeholder="faWordpress" defaultValue={data.icon} onChange={(e) => { setIcon(e.target.value) }} />
+            </Widget>
+        </SidebarWidget>
         <div className="wrap">
             <Flex className="update-service-header">
                 <Flex className="update-service-button" end>
@@ -78,17 +89,6 @@ const UpdateService= () => {
                         <textarea placeholder="Ajouter une description" defaultValue={data.description} onChange={(e) => { setDescription(e.target.value) }} />
                     </div>
                 </div>
-                <SidebarWidget 
-                className={cx("sidebar-widget", { ["active"]: open })}
-                setSidebarWidgetRef={setSidebarWidgetRef}
-                opened={open} 
-                onClose={closeSidebarWidget}
-                >
-                    <Widget id="icone" label="Icone du service">
-                        <label className="label-widget">Ajouter une icone</label>
-                        <input className="input-widget" placeholder="faWordpress" defaultValue={data.icon} onChange={(e) => { setIcon(e.target.value) }} />
-                    </Widget>
-                </SidebarWidget>
                 <div className="content-widget">
                     <Widget id="icone" label="Icone du service">
                         <label className="label-widget">Ajouter une icone</label>

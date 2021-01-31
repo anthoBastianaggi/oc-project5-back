@@ -114,6 +114,38 @@ const About = () => {
     return (
         <>
         {showMessage && <span className="success-message"><strong>Succès !</strong> Les données à propos de moi ont bien été mise à jour !</span>}
+        <SidebarWidget 
+            className={cx("sidebar-widget", "sidebar-widget-about", { ["active"]: open })}
+            setSidebarWidgetRef={setSidebarWidgetRef}
+            opened={open} 
+            onClose={closeSidebarWidget}
+        >
+            <Widget id="image-about" label="Image à propos de moi">
+                <label className="label-widget">Ajouter le lien de l'image</label>
+                <input 
+                className={cs("input-widget", "input-image")} 
+                placeholder="mon-image.jpg" 
+                defaultValue={data.map(({ image }) => image )}  
+                onChange={(e) => { setImage(e.target.value) }} 
+                />
+
+                <label className="label-widget">Ajouter le text alternative</label>
+                <input 
+                className="input-widget" 
+                placeholder="Text alternative" 
+                defaultValue={data.map(({ alt }) => alt )}
+                onChange={(e) => { setAlt(e.target.value) }} 
+                />
+            </Widget>
+            <Widget id="lien-visualisation" label="Lien visualisation du cv">
+                <label className="label-widget">Ajouter le lien pour visualiser le cv</label>
+                <input className="input-widget" placeholder="http://mon-cv.fr" defaultValue={data.map(({ visual_cv }) => visual_cv )} onChange={(e) => { setVisualCv(e.target.value) }} />
+            </Widget>
+            <Widget id="lien-telechargement" label="Lien téléchargement du cv">
+                <label className="label-widget">Ajouter le lien pour télécharger le cv</label>
+                <input className="input-widget" placeholder="http://mon-telechargement-cv.fr" defaultValue={data.map(({ download_cv }) => download_cv )} onChange={(e) => { setDownloadCv(e.target.value) }} />
+            </Widget>
+        </SidebarWidget>
         <div className="wrap">
             <Flex className="about-header">
                 <Flex className="about-settings" end>
@@ -135,38 +167,6 @@ const About = () => {
                     <Address user={user} onAddressUpdate={handleAddressUpdate} values={dataAddress} />
                     <Internet user={user} onInternetUpdate={handleInternetUpdate} values={dataInternet} />
                 </div>
-                <SidebarWidget 
-                className={cx("sidebar-widget", "sidebar-widget-about", { ["active"]: open })}
-                setSidebarWidgetRef={setSidebarWidgetRef}
-                opened={open} 
-                onClose={closeSidebarWidget}
-                >
-                    <Widget id="image-about" label="Image à propos de moi">
-                        <label className="label-widget">Ajouter le lien de l'image</label>
-                        <input 
-                        className={cs("input-widget", "input-image")} 
-                        placeholder="mon-image.jpg" 
-                        defaultValue={user.image}  
-                        onChange={(e) => { setImage(e.target.value) }} 
-                        />
-
-                        <label className="label-widget">Ajouter le text alternative</label>
-                        <input 
-                        className="input-widget" 
-                        placeholder="Text alternative" 
-                        defaultValue={user.alt}
-                        onChange={(e) => { setAlt(e.target.value) }} 
-                        />
-                    </Widget>
-                    <Widget id="lien-visualisation" label="Lien visualisation du cv">
-                        <label className="label-widget">Ajouter le lien pour visualiser le cv</label>
-                        <input className="input-widget" placeholder="http://mon-cv.fr" defaultValue={user.visual_cv} onChange={(e) => { setVisualCv(e.target.value) }} />
-                    </Widget>
-                    <Widget id="lien-telechargement" label="Lien téléchargement du cv">
-                        <label className="label-widget">Ajouter le lien pour télécharger le cv</label>
-                        <input className="input-widget" placeholder="http://mon-telechargement-cv.fr" defaultValue={user.download_cv} onChange={(e) => { setDownloadCv(e.target.value) }} />
-                    </Widget>
-                </SidebarWidget>
                 <div className="content-widget">
                     <Widget id="image-about" label="Image à propos de moi">
                         <label className="label-widget">Ajouter le lien de l'image</label>
