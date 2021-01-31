@@ -57,6 +57,29 @@ const Home = () => {
     return (
         <>
         {showMessage && <span className="success-message"><strong>Succès !</strong> Les données de l'accueil ont bien été mise à jour !</span>}
+        <SidebarWidget 
+            className={cx("sidebar-widget", { ["active"]: open })}
+            setSidebarWidgetRef={setSidebarWidgetRef}
+            opened={open} 
+            onClose={closeSidebarWidget}
+        >
+            <Widget id="image" label="Image du projet">
+                <label className="label-widget">Ajouter le lien de l'image</label>
+                <input 
+                className={cs("input-widget", "input-image")}
+                placeholder="mon-image.jpg" 
+                defaultValue={data.map(({ image }) => image)}
+                onChange={(e) => { setImage(e.target.value) }} 
+                />
+                <label className="label-widget">Ajouter le text alternative</label>
+                <input 
+                className="input-widget" 
+                placeholder="Text alternative" 
+                defaultValue={data.map(({ alt }) => alt )}
+                onChange={(e) => { setAlt(e.target.value) }} 
+                />
+            </Widget>
+        </SidebarWidget>
         <div className="wrap">
             <Flex className="home-header">
                 <Flex className="home-settings" end>
@@ -88,29 +111,6 @@ const Home = () => {
                         />
                     </div>
                 </div>
-                <SidebarWidget 
-                className={cx("sidebar-widget", { ["active"]: open })}
-                setSidebarWidgetRef={setSidebarWidgetRef}
-                opened={open} 
-                onClose={closeSidebarWidget}
-                >
-                    <Widget id="image" label="Image du projet">
-                        <label className="label-widget">Ajouter le lien de l'image</label>
-                        <input 
-                        className={cs("input-widget", "input-image")}
-                        placeholder="mon-image.jpg" 
-                        defaultValue={image}
-                        onChange={(e) => { setImage(e.target.value) }} 
-                        />
-                        <label className="label-widget">Ajouter le text alternative</label>
-                        <input 
-                        className="input-widget" 
-                        placeholder="Text alternative" 
-                        defaultValue={alt}
-                        onChange={(e) => { setAlt(e.target.value) }} 
-                        />
-                    </Widget>
-                </SidebarWidget>
                 <div className="content-widget">
                     <Widget id="image" label="Image du projet">
                         <label className="label-widget">Ajouter le lien de l'image</label>

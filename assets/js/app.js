@@ -22,12 +22,14 @@ import CategorySkill from './views/Skills/category/CategorySkill';
 import UpdateSkill from './views/Skills/Update/UpdateSkill';
 import UpdateCategorySkill from './views/Skills/category/Update/UpdateCategorySkill';
 import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
+import ForgetPassword from './views/ForgetPassword/ForgetPassword';
 
 ReactDOM.render(
     <BrowserRouter>
         <div className="app">
             <Switch>
                 <Route path={"/admin"} component={() => LayoutAdmin(Admin)} />
+                <Route path={"/forget-password"} component={() => LayoutAdmin(ForgetPassword)} />
                 <PrivateRoute component={() => Layout(Home)} path="/" exact />
                 <PrivateRoute component={() => Layout(Home)} path="/home" exact />
                 <PrivateRoute component={() => Layout(About)} path="/about" exact />

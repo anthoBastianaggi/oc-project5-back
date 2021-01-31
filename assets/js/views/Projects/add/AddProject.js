@@ -57,6 +57,37 @@ const AddProject = () => {
     return (
         <>
         {showMessage && <span className="info-message"><strong>Info !</strong> Le projet a bien été ajouté !</span>}
+        <SidebarWidget 
+            className={cx("sidebar-widget", { ["active"]: open })} 
+            setSidebarWidgetRef={setSidebarWidgetRef} 
+            opened={open}
+            onClose={closeSidebarWidget}
+        >   
+            <Widget id="category" label="Catégorie du projet">
+                {dataCategory.map(({ id, name }) => (
+                    <Checkbox
+                    key={id} 
+                    id={id} 
+                    label={name} 
+                    name="category-project" 
+                    value={id} 
+                    checked={select === name}
+                    onChange={event => handleSelectChange(event)}                    
+                    />
+                ))}
+            </Widget>
+            <Widget id="image" label="Image du projet">
+                <label className="label-widget">Ajouter le lien de l'image</label>
+                <input className={cs("input-widget", "input-image")} placeholder="mon-image.jpg" onChange={(e) => { setImage(e.target.value) }} />
+                
+                <label className="label-widget">Ajouter le text alternative</label>
+                <input className="input-widget" placeholder="Text alternative" onChange={(e) => { setAlt(e.target.value) }} />
+            </Widget>
+            <Widget id="link" label="Lien du projet">
+                <label className="label-widget">Ajouter le lien du projet</label>
+                <input className="input-widget" placeholder="http://mon-projet.fr" onChange={(e) => { setLink(e.target.value) }} />
+            </Widget>
+        </SidebarWidget>
         <div className="wrap">
             <Flex className="project-header">
                 <Flex className="project-settings" end>
@@ -82,37 +113,6 @@ const AddProject = () => {
                         <textarea placeholder="Ajouter une description" onChange={(e) => { setDescription(e.target.value) }} />
                     </div>
                 </div>
-                <SidebarWidget 
-                className={cx("sidebar-widget", { ["active"]: open })} 
-                setSidebarWidgetRef={setSidebarWidgetRef} 
-                opened={open}
-                onClose={closeSidebarWidget}
-                >   
-                    <Widget id="category" label="Catégorie du projet">
-                        {dataCategory.map(({ id, name }) => (
-                            <Checkbox
-                            key={id} 
-                            id={id} 
-                            label={name} 
-                            name="category-project" 
-                            value={id} 
-                            checked={select === name}
-                            onChange={event => handleSelectChange(event)}                    
-                            />
-                        ))}
-                    </Widget>
-                    <Widget id="image" label="Image du projet">
-                        <label className="label-widget">Ajouter le lien de l'image</label>
-                        <input className={cs("input-widget", "input-image")} placeholder="mon-image.jpg" onChange={(e) => { setImage(e.target.value) }} />
-                        
-                        <label className="label-widget">Ajouter le text alternative</label>
-                        <input className="input-widget" placeholder="Text alternative" onChange={(e) => { setAlt(e.target.value) }} />
-                    </Widget>
-                    <Widget id="link" label="Lien du projet">
-                        <label className="label-widget">Ajouter le lien du projet</label>
-                        <input className="input-widget" placeholder="http://mon-projet.fr" onChange={(e) => { setLink(e.target.value) }} />
-                    </Widget>
-                </SidebarWidget>
                 <div className="content-widget">
                     <Widget id="category" label="Catégorie du projet">
                         {dataCategory.map(({ id, name }) => (
@@ -136,7 +136,7 @@ const AddProject = () => {
                     </Widget>
                     <Widget id="link" label="Lien du projet">
                         <label className="label-widget">Ajouter le lien du projet</label>
-                        <input className="input-widget" placeholder="http://mon-projet.fr" onChange={(e) => { setLink(e.target.value) }} />
+                        <input className="input-widget" type="url" placeholder="http://mon-projet.fr" onChange={(e) => { setLink(e.target.value) }} />
                     </Widget>
                 </div>
             </Flex>

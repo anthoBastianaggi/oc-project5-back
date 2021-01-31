@@ -16,8 +16,6 @@ const Dashboard = () => {
     dataDashboard()
   }, []);
 
-  console.log(data[0]?.firstname);
-
     const menuItems = [
         { id: "home", href: "/home", label: "accueil", icon: faHome, isActive: () => useRouteMatch("/home") },
         { id: "about", href: "/about", label: "à propos", icon: faUser, isActive: () => useRouteMatch("/about") },

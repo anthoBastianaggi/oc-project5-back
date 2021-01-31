@@ -42,16 +42,3 @@ function handleResponse(response) {
         return data;
     });
 }
-
-function refresh() {
-  // return authorization header with basic auth credentials
-  let user = JSON.parse(sessionStorage.getItem('login'));
-
-  console.log(jwtDecode(user.token));
-  if (user && user.token) {
-      return { 'Authorization': 'Bearer ' + user.token };
-  } else {
-      return {};
-  }
-}
-
