@@ -30,7 +30,7 @@ const ForgetPassword = () => {
                         <Title as="h1" stylesTitle="stylesH1">Réinitialisation du mot de passe</Title>
                         <div className="line"></div>
                     </div>
-                    <div className="infobox">
+                    <div className="infobox-forget">
                         <div className="infobox-container">
                             <div className="forget-title-container">
                                 <Title as="h2" stylesTitle="stylesH2" className="forget-title">Vous avez oublié votre mot de passe ?</Title>

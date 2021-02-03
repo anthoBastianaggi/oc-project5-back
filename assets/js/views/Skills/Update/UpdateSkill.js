@@ -50,7 +50,7 @@ const UpdateSkill = () => {
         ) {
             skillsSection.updateSkill(params.id, nameValue, percentageValue, select);
             setShowMessage(true);
-            //window.setTimeout("location=('/skills');",2000);
+            window.setTimeout("location=('/skills');",2000);
         } 
     };
 
